@@ -22,7 +22,7 @@
 #include "launcherwindow.h"
 #include "proxylistitem.h"
 #include "serverlistitem.h"
-#include "qzipreader_p.h"
+#include "updater/qzipreader_p.h"
 #include "ui_launcherwindow.h"
 
 #define LAUNCHER_TITLE "X:UO Launcher v" APP_VERSION

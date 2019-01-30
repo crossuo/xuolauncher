@@ -20,26 +20,19 @@ macx {
 
 QT       += core gui  network widgets
 # concurrent
-TARGET = xuolauncher
+TARGET = xuomanager
 TEMPLATE = app
 
 CONFIG += c++11
 
 include($$PWD/updater/updater.pri)
 
-SOURCES += main.cpp\
-        launcherwindow.cpp \
-        serverlistitem.cpp \
-        proxylistitem.cpp \
-        changelogform.cpp
+SOURCES += manager.cpp\
+        managerwindow.cpp
 
-HEADERS  += launcherwindow.h \
-        serverlistitem.h \
-        proxylistitem.h \
-        changelogform.h
+HEADERS  += managerwindow.h
 
-FORMS    += launcherwindow.ui \
-    changelogform.ui
+FORMS    += managerwindow.ui
 
 OTHER_FILES += launcher.rc
 

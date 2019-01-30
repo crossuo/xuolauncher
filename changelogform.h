@@ -11,8 +11,8 @@
 
 #include <QMainWindow>
 #include <QUrl>
-#include "updatemanager.h"
-#include "updateinfo.h"
+#include "updater/updatemanager.h"
+#include "updater/updateinfo.h"
 
 namespace Ui
 {

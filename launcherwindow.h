@@ -13,7 +13,7 @@
 #include <QCloseEvent>
 #include <QKeyEvent>
 #include "changelogform.h"
-#include "updatemanager.h"
+#include "updater/updatemanager.h"
 #include <QTimer>
 
 namespace Ui

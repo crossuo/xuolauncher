@@ -4,13 +4,7 @@
 * This file is released under the GPL license
 */
 #include "updatemanager.h"
-
-#define USE_XXHASH 1
-
-#if USE_XXHASH
 #include "xxhash.h"
-#endif
-
 #include <assert.h>
 #include <QProgressDialog>
 #include <QNetworkRequest>
@@ -68,7 +62,6 @@ QByteArray UpdateManager::getHash(const QString &fileName) const
     QFile f(fileName);
     if (f.open(QFile::ReadOnly))
     {
-#if USE_XXHASH
         auto len = f.size();
         auto ptr = f.map(0, len);
         auto hash = XXH64(static_cast<void *>(ptr), static_cast<size_t>(len), 0x2593);
@@ -76,13 +69,6 @@ QByteArray UpdateManager::getHash(const QString &fileName) const
         QDataStream stream(&byteArray, QIODevice::WriteOnly);
         stream << hash;
         return byteArray;
-#else
-        QCryptographicHash hash(QCryptographicHash::Sha1);
-        if (hash.addData(&f))
-        {
-            return hash.result();
-        }
-#endif
     }
     return QByteArray();
 }
