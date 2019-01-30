@@ -129,12 +129,6 @@ LauncherWindow::LauncherWindow(QWidget *parent)
     loadProxyList();
     loadServerList();
 
-#if defined(QT_NO_DEBUG)
-    ui->tw_Main->removeTab(5);
-#else
-
-#endif
-
 #if !BUILD_WINDOWS
     ui->cb_LaunchRunUOAM->setEnabled(false);
     ui->cb_LaunchRunUOAM->setVisible(false);
@@ -892,45 +886,6 @@ void LauncherWindow::on_tb_SetClientPath_clicked()
     if (path.length())
     {
         ui->le_ServerClientPath->setText(path);
-    }
-}
-
-void LauncherWindow::on_tb_SetReleasePath_clicked()
-{
-    auto path = ui->le_ReleasePath->text();
-    if (!path.length())
-        path = QCoreApplication::applicationDirPath();
-
-    path = QFileDialog::getExistingDirectory(nullptr, tr("Select release directory"), path);
-    if (path.length())
-    {
-        auto fullname = path + "/win64.manifest.xml";
-        auto fi = QFileInfo(fullname);
-        if (fi.exists())
-        {
-            ui->le_ReleasePath->setText(path);
-            ui->pb_Process->setEnabled(true);
-        }
-        else
-        {
-            ui->pb_Process->setEnabled(false);
-        }
-    }
-}
-
-void LauncherWindow::on_pb_Process_clicked()
-{
-    if (ui->pb_Process->isEnabled())
-    {
-        ui->pb_Process->setEnabled(false);
-        QMessageBox::information(this, "Publishing", tr("Please wait, this may take some time."));
-        const auto &path = ui->le_ReleasePath->text();
-        const auto &plat = ui->cb_ReleasePlatform->currentText();
-        const auto &prod = ui->cb_ReleaseProduct->currentText();
-        const auto &ver = ui->le_ReleaseVersion->text();
-        m_UpdateManager->generateUpdate(path, plat, prod, ver, this);
-        QMessageBox::information(this, "Publishing", tr("Done!"));
-        ui->pb_Process->setEnabled(true);
     }
 }
 

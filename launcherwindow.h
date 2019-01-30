@@ -69,8 +69,6 @@ private slots:
     void on_rb_XuoFeaturesSphere_clicked();
     void on_rb_XuoFeaturesRunUO_clicked();
     void on_rb_XuoFeaturesPOL_clicked();
-    void on_pb_Process_clicked();
-    void on_tb_SetReleasePath_clicked();
     void on_tb_SetClientPath_clicked();
     void on_cb_Beta_clicked();
 
