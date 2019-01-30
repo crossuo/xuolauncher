@@ -102,6 +102,12 @@ ManagerWindow::ManagerWindow(QWidget *parent)
         SLOT(onPackageListReceived(const QMap<QString, QMap<QString, CReleaseInfo>> &)));
     connect(&m_UpdatesTimer, SIGNAL(timeout()), this, SLOT(onUpdatesTimer()));
 
+#if defined(QT_NO_DEBUG)
+    ui->tw_Main->removeTab(4);
+#else
+
+#endif
+
     setFixedSize(size());
 
     updateXUOAFeaturesCode();

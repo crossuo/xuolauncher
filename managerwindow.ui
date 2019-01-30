@@ -882,7 +882,113 @@
       </widget>
       <widget class="QWidget" name="tb_ReleaseManager">
        <attribute name="title">
-        <string>Releases</string>
+        <string>Release</string>
+       </attribute>
+       <widget class="QLabel" name="lbl0">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>5</y>
+          <width>59</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Manifest:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>30</y>
+          <width>86</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Shard Name:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_3">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>55</y>
+          <width>59</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Version:</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pb_ShardProcess">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>355</y>
+          <width>671</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Process</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="le_ShardReleasePath">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>5</y>
+          <width>546</width>
+          <height>21</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="le_ShardName">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>30</y>
+          <width>136</width>
+          <height>21</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="le_ShardVersion">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>55</y>
+          <width>136</width>
+          <height>21</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="tb_SetShardReleasePath">
+        <property name="geometry">
+         <rect>
+          <x>650</x>
+          <y>5</y>
+          <width>22</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>...</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tb_XUOReleaseManager">
+       <attribute name="title">
+        <string>X:UO Releases</string>
        </attribute>
        <widget class="QLineEdit" name="le_ReleasePath">
         <property name="enabled">
