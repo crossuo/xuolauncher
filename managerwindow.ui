@@ -988,7 +988,7 @@
       </widget>
       <widget class="QWidget" name="tb_XUOReleaseManager">
        <attribute name="title">
-        <string>X:UO Releases</string>
+        <string>CrossUO Releases</string>
        </attribute>
        <widget class="QLineEdit" name="le_ReleasePath">
         <property name="enabled">

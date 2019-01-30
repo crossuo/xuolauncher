@@ -103,7 +103,7 @@ ManagerWindow::ManagerWindow(QWidget *parent)
     connect(&m_UpdatesTimer, SIGNAL(timeout()), this, SLOT(onUpdatesTimer()));
 
 #if defined(QT_NO_DEBUG)
-    ui->tw_Main->removeTab(4);
+    ui->tw_Main->removeTab(3);
 #else
 
 #endif
