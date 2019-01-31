@@ -139,9 +139,6 @@ LauncherWindow::LauncherWindow(QWidget *parent)
     ui->tw_Main->setCurrentIndex(0);
     ui->tw_Server->setCurrentIndex(0);
 
-    updateXUOAFeaturesCode();
-    updateXuoFeaturesCode();
-
     setWindowTitle(LAUNCHER_TITLE);
     m_Loading = false;
 
@@ -1123,99 +1120,6 @@ void LauncherWindow::on_cb_Beta_clicked()
     on_pb_CheckUpdates_clicked();
 }
 
-void LauncherWindow::on_lw_XUOAFeaturesOptions_clicked(const QModelIndex &index)
-{
-    Q_UNUSED(index);
-    updateXUOAFeaturesCode();
-}
-
-void LauncherWindow::on_lw_XUOAFeaturesScripts_clicked(const QModelIndex &index)
-{
-    Q_UNUSED(index);
-    updateXUOAFeaturesCode();
-}
-
-void LauncherWindow::on_rb_XUOAFeaturesSphere_clicked()
-{
-    updateXUOAFeaturesCode();
-}
-
-void LauncherWindow::on_rb_XUOAFeaturesRunUO_clicked()
-{
-    updateXUOAFeaturesCode();
-}
-
-void LauncherWindow::on_rb_XUOAFeaturesPOL_clicked()
-{
-    updateXUOAFeaturesCode();
-}
-
-void LauncherWindow::updateXUOAFeaturesCode()
-{
-    quint64 featuresFlags = 0;
-    quint64 scriptGroupsFlags = 0;
-
-    for (auto i = 0; i < ui->lw_XUOAFeaturesOptions->count(); i++)
-    {
-        auto item = ui->lw_XUOAFeaturesOptions->item(i);
-        if (item != nullptr && item->checkState() == Qt::Checked)
-            featuresFlags |= (quint64(1) << i);
-    }
-
-    for (auto i = 0; i < ui->lw_XUOAFeaturesScripts->count(); i++)
-    {
-        auto item = ui->lw_XUOAFeaturesScripts->item(i);
-        if (item != nullptr && item->checkState() == Qt::Checked)
-            scriptGroupsFlags |= (quint64(1) << i);
-    }
-
-    QString code;
-    if (ui->rb_XUOAFeaturesSphere->isChecked())
-    {
-        code.sprintf(
-            "//data for sendpacket\nB0FC W015 W0A001 D0%08X D0%08X D0%08X D0%08X",
-            uint((featuresFlags >> 32) & 0xFFFFFFFF),
-            uint(featuresFlags & 0xFFFFFFFF),
-            uint((scriptGroupsFlags >> 32) & 0xFFFFFFFF),
-            uint(scriptGroupsFlags & 0xFFFFFFFF));
-    }
-    else if (ui->rb_XUOAFeaturesRunUO->isChecked())
-    {
-        code.sprintf(
-            "public sealed class XUOAFeatures : Packet\n"
-            "{\n"
-            "public XUOAFeatures() : base(0xFC)\n"
-            "{\n"
-            "EnsureCapacity(21);\n"
-            "m_Stream.Write((ushort)0xA001);\n"
-            "m_Stream.Write((uint)0x%08X);\n"
-            "m_Stream.Write((uint)0x%08X);\n"
-            "m_Stream.Write((uint)0x%08X);\n"
-            "m_Stream.Write((uint)0x%08X);\n"
-            "}\n"
-            "}",
-            uint((featuresFlags >> 32) & 0xFFFFFFFF),
-            uint(featuresFlags & 0xFFFFFFFF),
-            uint((scriptGroupsFlags >> 32) & 0xFFFFFFFF),
-            uint(scriptGroupsFlags & 0xFFFFFFFF));
-    }
-    else if (ui->rb_XUOAFeaturesPOL->isChecked())
-    {
-        code.sprintf(
-            "program XUOAFeatures_sendpacket(who)\n"
-            "var res := SendPacket(who, \"FC0015A001%08X%08X%08X%08X\");\n"
-            "if (!res)\n"
-            "print(\"SendPacket error: \" + res.errortext );\n"
-            "endif\n"
-            "endprogram",
-            uint((featuresFlags >> 32) & 0xFFFFFFFF),
-            uint(featuresFlags & 0xFFFFFFFF),
-            uint((scriptGroupsFlags >> 32) & 0xFFFFFFFF),
-            uint(scriptGroupsFlags & 0xFFFFFFFF));
-    }
-    ui->pte_XUOAFeaturesCode->setPlainText(code);
-}
-
 void LauncherWindow::on_cb_XuoPath_currentIndexChanged(int index)
 {
     Q_UNUSED(index);
@@ -1487,70 +1391,4 @@ void LauncherWindow::on_lw_Packages_doubleClicked(const QModelIndex &index)
 {
     Q_UNUSED(index);
     on_pb_RestoreSelectedVersion_clicked();
-}
-
-void LauncherWindow::on_lw_XuoFeaturesOptions_clicked(const QModelIndex &index)
-{
-    Q_UNUSED(index);
-    updateXuoFeaturesCode();
-}
-
-void LauncherWindow::on_rb_XuoFeaturesSphere_clicked()
-{
-    updateXuoFeaturesCode();
-}
-
-void LauncherWindow::on_rb_XuoFeaturesRunUO_clicked()
-{
-    updateXuoFeaturesCode();
-}
-
-void LauncherWindow::on_rb_XuoFeaturesPOL_clicked()
-{
-    updateXuoFeaturesCode();
-}
-
-void LauncherWindow::updateXuoFeaturesCode()
-{
-    uint featuresFlags = 0;
-
-    for (int i = 0; i < ui->lw_XuoFeaturesOptions->count(); i++)
-    {
-        const auto item = ui->lw_XuoFeaturesOptions->item(i);
-        if (item != nullptr && item->checkState() == Qt::Checked)
-            featuresFlags |= (1 << i);
-    }
-
-    QString code;
-    if (ui->rb_XuoFeaturesSphere->isChecked())
-    {
-        code.sprintf("//data for sendpacket\nB0FC W0009 W0032 D0%08X", featuresFlags);
-    }
-    else if (ui->rb_XuoFeaturesRunUO->isChecked())
-    {
-        code.sprintf(
-            "public sealed class XUOAFeatures : Packet\n"
-            "{\n"
-            "public XUOAFeatures() : base(0xFC)\n"
-            "{\n"
-            "EnsureCapacity(9);\n"
-            "m_Stream.Write((ushort)0x0032);\n"
-            "m_Stream.Write((uint)0x%08X);\n"
-            "}\n"
-            "}",
-            featuresFlags);
-    }
-    else if (ui->rb_XuoFeaturesPOL->isChecked())
-    {
-        code.sprintf(
-            "program XUOAFeatures_sendpacket(who)\n"
-            "var res := SendPacket(who, \"FC00090032%08X\");\n"
-            "if (!res)\n"
-            "print(\"SendPacket error: \" + res.errortext );\n"
-            "endif\n"
-            "endprogram",
-            featuresFlags);
-    }
-
-    ui->pte_XuoFeaturesCode->setPlainText(code);
 }

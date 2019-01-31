@@ -54,21 +54,12 @@ private slots:
     void on_cb_LaunchSaveAero_clicked();
     void on_cb_LaunchFastLogin_clicked();
     void on_cb_LaunchRunUOAM_clicked();
-    void on_lw_XUOAFeaturesOptions_clicked(const QModelIndex &index);
-    void on_lw_XUOAFeaturesScripts_clicked(const QModelIndex &index);
-    void on_rb_XUOAFeaturesSphere_clicked();
-    void on_rb_XUOAFeaturesRunUO_clicked();
-    void on_rb_XUOAFeaturesPOL_clicked();
     void on_pb_CheckUpdates_clicked();
     void on_cb_XuoPath_currentIndexChanged(int index);
     void on_pb_ApplyUpdates_clicked();
     void on_pb_RestoreSelectedVersion_clicked();
     void on_pb_ShowChangelog_clicked();
     void on_lw_Packages_doubleClicked(const QModelIndex &index);
-    void on_lw_XuoFeaturesOptions_clicked(const QModelIndex &index);
-    void on_rb_XuoFeaturesSphere_clicked();
-    void on_rb_XuoFeaturesRunUO_clicked();
-    void on_rb_XuoFeaturesPOL_clicked();
     void on_tb_SetClientPath_clicked();
     void on_cb_Beta_clicked();
 

@@ -1,7 +1,4 @@
-set exePath="%cd%\release\launcher.exe"
-set targetPath="%cd%\bin"
-:: avoid using windeployqt, lets do manually to keep it minimal
-:: Qt5Core.dll Qt5Gui.dll Qt5Network.dll Qt5Widget.dll platforms/qwindows.dll styles/qwindowsvistastyle.dll
-::%QT_BIN%windeployqt -dir %targetPath% %exePath%
-copy %exePath% /Y /B %targetPath%\launcher.exe
+set exePath="%cd%\release\xuolauncher.exe"
+set targetPath="%cd%\release"
+C:\Danny\Qt\5.11.1\msvc2017_64\bin\windeployqt.exe -dir %targetPath% %exePath%
 pause
