@@ -1122,6 +1122,100 @@
         </property>
        </widget>
       </widget>
+      <widget class="QWidget" name="tb_About">
+       <attribute name="title">
+        <string>About</string>
+       </attribute>
+       <widget class="QLabel" name="label_14">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>0</y>
+          <width>251</width>
+          <height>251</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="res.qrc">:/qt/etc/XUO.png</pixmap>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton">
+        <property name="geometry">
+         <rect>
+          <x>25</x>
+          <y>275</y>
+          <width>231</width>
+          <height>32</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>GitHub</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_2">
+        <property name="geometry">
+         <rect>
+          <x>25</x>
+          <y>300</y>
+          <width>231</width>
+          <height>32</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>WebSite</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_3">
+        <property name="geometry">
+         <rect>
+          <x>25</x>
+          <y>325</y>
+          <width>231</width>
+          <height>32</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Discord</string>
+        </property>
+       </widget>
+       <widget class="QTextBrowser" name="textBrowser">
+        <property name="geometry">
+         <rect>
+          <x>280</x>
+          <y>5</y>
+          <width>386</width>
+          <height>381</height>
+         </rect>
+        </property>
+        <property name="html">
+         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.SF NS Text'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;hr /&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;. . ::. [ 25/01/2019 ].::. .&lt;/span&gt; &lt;br /&gt;Welcome to CrossUO, the very first Ultima Online client with &lt;span style=&quot; font-weight:600;&quot;&gt;real native multiplatform support&lt;/span&gt;. &lt;br /&gt;&lt;br /&gt;This is the first release of a new client, so expect issues. We need to release this so you can help us with testing and getting the project in shape going forward. &lt;br /&gt;There is zero new features since the last Orion release, do not expect much. Minor updates will follow until we consider this stable enough to start fixing known Orion bugs and new features. &lt;br /&gt;&lt;br /&gt;Be patient and report any issues. Thank you! &lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;CrossUO 1.0.0 and X:UO Launcher 1.0.0:&lt;/span&gt; &lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;New: Ubuntu 16.04+ 64bits support &lt;br /&gt;New: Manjaro Linux 18.02+ 64bits support &lt;br /&gt;New: macOS High Sierra 10.13+ support &lt;br /&gt;New: Option to disable activating macros while in console mode (emote, whisper, party, etc.) &lt;br /&gt;&lt;/p&gt;
+&lt;hr /&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_4">
+        <property name="geometry">
+         <rect>
+          <x>25</x>
+          <y>350</y>
+          <width>231</width>
+          <height>32</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Team Member</string>
+        </property>
+       </widget>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -1154,7 +1248,9 @@
   <tabstop>pb_ProxyRemove</tabstop>
   <tabstop>tw_Server</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="res.qrc"/>
+ </resources>
  <connections/>
  <designerdata>
   <property name="gridDeltaX">

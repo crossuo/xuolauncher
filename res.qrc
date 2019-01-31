@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/qt/etc">
         <file>qt.conf</file>
+        <file>XUO.png</file>
     </qresource>
 </RCC>
