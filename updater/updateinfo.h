@@ -28,6 +28,7 @@ class CReleaseInfo
 public:
     QString Name;
     QString Version;
+    bool latest;
     QList<CFileInfo> FileList;
 };
 

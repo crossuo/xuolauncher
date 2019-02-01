@@ -86,10 +86,17 @@ LauncherWindow::LauncherWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    const QString appData = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+
+    QDir dir(appData);
+    if (!dir.exists()){
+      dir.mkdir(appData);
+    }
+
     m_ChangelogForm = new ChangelogForm(nullptr);
 
     m_UpdateManager = new UpdateManager(UPDATER_HOST, LAUNCHER_TITLE, this);
-    m_UpdateManager->setCacheDirectory(qApp->applicationDirPath() + "/cache");
+    m_UpdateManager->setCacheDirectory(appData + "/cache");
     connect(
         m_UpdateManager,
         &UpdateManager::changelogReceived,
@@ -143,9 +150,11 @@ LauncherWindow::LauncherWindow(QWidget *parent)
     m_Loading = false;
 
     if (!ui->cb_XuoPath->currentText().length())
-        on_tb_SetXuoPath_clicked();
-
-    on_cb_XuoPath_currentIndexChanged(ui->cb_XuoPath->currentIndex());
+    {
+        ui->cb_XuoPath->addItem(appData);
+        ui->cb_XuoPath->setCurrentIndex(ui->cb_XuoPath->count() - 1);
+    }
+on_cb_XuoPath_currentIndexChanged(ui->cb_XuoPath->currentIndex());
     m_UpdatesTimer.start(15 * 60 * 1000);
 }
 
@@ -321,7 +330,6 @@ void LauncherWindow::on_pb_ServerSave_clicked()
             break;
         }
     }
-
     selected->setText(ui->le_ServerName->text());
     selected->SetAddress(ui->le_ServerAddress->text());
     selected->SetAccount(ui->le_ServerAccount->text());
@@ -1142,7 +1150,7 @@ void LauncherWindow::onUpdatesListReceived(const QList<CFileInfo> &list)
         auto fullPath = clientPath + "/" + info.Name;
         auto hash = m_UpdateManager->getHash(fullPath);
 
-        if (info.Name.toLower() == "launcher" EXE_EXTENSION || info.inLauncher)
+        if (info.inLauncher)
         {
             fullPath = qApp->applicationDirPath() + "/" + info.Name;
             hash = m_UpdateManager->getHash(fullPath);
@@ -1294,7 +1302,7 @@ void LauncherWindow::on_pb_ApplyUpdates_clicked()
         for (auto item : updateList)
         {
             auto dst = ui->cb_XuoPath->currentText();
-            if (item->text().toLower() == "launcher" EXE_EXTENSION || item->m_Info.inLauncher)
+            if (item->m_Info.inLauncher)
             {
                 m_LauncherFoundInUpdates = true;
                 dst = qApp->applicationDirPath();

@@ -78,8 +78,17 @@ void UpdateManager::getManifest(const QString &endpoint)
     get(endpoint, [this](QNetworkReply *reply) {
         const auto data = readReply(reply);
         readManifest(data);
+        QList<CFileInfo> releaseFiles;
+        //FIXME : just add most recent version
+        for (const auto &p : releaseList.keys())
+        {
+            for (const auto &b : releaseList[p]["latest"].FileList)
+            {
+                        releaseFiles.push_back(b);
+            }
+        }
         emit packageListReceived(releaseList);
-        emit updatesListReceived(releaseList["all"]["incremental"].FileList);
+        emit updatesListReceived(releaseFiles);
     });
 }
 
@@ -207,9 +216,11 @@ void UpdateManager::readManifest(const QString &xmlData)
     releaseList.clear();
 
     bool launcher = false;
+    bool latest = false;
     QString tmp;
     QString version;
     QString prod;
+    QString latestS;
     QXmlStreamReader reader(xmlData);
     while (!reader.atEnd() && !reader.hasError())
     {
@@ -221,15 +232,26 @@ void UpdateManager::readManifest(const QString &xmlData)
                 CReleaseInfo release;
                 ReadAttribute(release.Name, "name");
                 ReadAttribute(release.Version, "version");
+                ReadAttribute(latestS, "latest");
 
-                launcher = prod == "X:UO Launcher";
                 prod = release.Name;
-                version = release.Version;
+                launcher = prod == "X:UO Launcher";
+                latest = latestS == "yes";
+                if (latest)
+                {
+                    version = "latest";
+                }
+                else
+                {
+                    version = release.Version;
+                }
+
+
                 releaseList[prod][version] = release;
             }
             else if (reader.name().toString().trimmed().toLower() == "file")
             {
-                if (version.isEmpty())
+                if (version.isEmpty() || prod == "all")
                     return;
 
                 CFileInfo info;
