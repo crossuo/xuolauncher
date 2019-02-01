@@ -71,6 +71,14 @@ private slots:
 
     void unzipPackage(const QString &filename, const QString &toPath);
 
+    void on_pb_Github_clicked();
+
+    void on_pb_TeamMember_clicked();
+
+    void on_pb_Website_clicked();
+
+    void on_pb_Discord_clicked();
+
 signals:
     void updatesListReceived(const QList<CFileInfo> &);
     void packageListReceived(const QMap<QString, QMap<QString, CReleaseInfo>> &);

@@ -1400,3 +1400,23 @@ void LauncherWindow::on_lw_Packages_doubleClicked(const QModelIndex &index)
     Q_UNUSED(index);
     on_pb_RestoreSelectedVersion_clicked();
 }
+
+void LauncherWindow::on_pb_Github_clicked()
+{
+    QDesktopServices::openUrl(QUrl("https://github.com/crossuo"));
+}
+
+void LauncherWindow::on_pb_TeamMember_clicked()
+{
+    QDesktopServices::openUrl(QUrl("https://github.com/orgs/crossuo/teams/crossuo-team/members"));
+}
+
+void LauncherWindow::on_pb_Website_clicked()
+{
+     QDesktopServices::openUrl(QUrl("http://crossuo.com"));
+}
+
+void LauncherWindow::on_pb_Discord_clicked()
+{
+    QDesktopServices::openUrl(QUrl("https://discord.gg/FVy46dx"));
+}
