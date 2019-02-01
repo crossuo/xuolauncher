@@ -49,811 +49,587 @@
        <attribute name="title">
         <string>Accounts</string>
        </attribute>
-       <widget class="QLabel" name="label">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>5</y>
-          <width>181</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Accounts</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-       <widget class="QListWidget" name="lw_ServerList">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>30</y>
-          <width>181</width>
-          <height>296</height>
-         </rect>
-        </property>
-        <property name="dragDropMode">
-         <enum>QAbstractItemView::DragDrop</enum>
-        </property>
-        <property name="defaultDropAction">
-         <enum>Qt::MoveAction</enum>
-        </property>
-       </widget>
        <widget class="QTabWidget" name="tw_Server">
         <property name="geometry">
          <rect>
-          <x>195</x>
-          <y>5</y>
-          <width>476</width>
-          <height>366</height>
+          <x>200</x>
+          <y>0</y>
+          <width>481</width>
+          <height>371</height>
          </rect>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="tb_Config">
          <attribute name="title">
           <string>Settings</string>
          </attribute>
-         <widget class="QPushButton" name="pb_ServerAdd">
+         <widget class="QWidget" name="layoutWidget">
           <property name="geometry">
            <rect>
-            <x>10</x>
-            <y>310</y>
-            <width>126</width>
-            <height>23</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Add new</string>
-          </property>
-         </widget>
-         <widget class="QLineEdit" name="le_ServerPassword">
-          <property name="geometry">
-           <rect>
-            <x>95</x>
-            <y>85</y>
-            <width>156</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="maxLength">
-           <number>30</number>
-          </property>
-          <property name="echoMode">
-           <enum>QLineEdit::Password</enum>
-          </property>
-         </widget>
-         <widget class="QLineEdit" name="le_ServerAddress">
-          <property name="geometry">
-           <rect>
-            <x>95</x>
-            <y>35</y>
-            <width>156</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="toolTip">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If empty, X:UO will use the address set in login.cfg found in the Client Path&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-          <property name="text">
-           <string>127.0.0.1,2593</string>
-          </property>
-          <property name="maxLength">
-           <number>256</number>
-          </property>
-         </widget>
-         <widget class="QLabel" name="label_5">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>85</y>
-            <width>81</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Password:</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-         <widget class="QCheckBox" name="cb_ServerShowPassword">
-          <property name="geometry">
-           <rect>
-            <x>255</x>
-            <y>85</y>
-            <width>61</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Show</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="label_3">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>35</y>
-            <width>81</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Server Address:</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-         <widget class="QLabel" name="label_2">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
+            <x>0</x>
             <y>10</y>
-            <width>81</width>
-            <height>20</height>
+            <width>466</width>
+            <height>331</height>
            </rect>
           </property>
-          <property name="layoutDirection">
-           <enum>Qt::LeftToRight</enum>
-          </property>
-          <property name="text">
-           <string>Profile Name:</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_15">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_12">
+             <item>
+              <layout class="QVBoxLayout" name="verticalLayout_7">
+               <item>
+                <widget class="QLabel" name="label_2">
+                 <property name="layoutDirection">
+                  <enum>Qt::LeftToRight</enum>
+                 </property>
+                 <property name="text">
+                  <string>Profile Name:</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_3">
+                 <property name="text">
+                  <string>Server Address:</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_4">
+                 <property name="text">
+                  <string>Login:</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_5">
+                 <property name="text">
+                  <string>Password:</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_22">
+                 <property name="text">
+                  <string>UO Client Path:</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QVBoxLayout" name="verticalLayout_8">
+               <item>
+                <widget class="QLineEdit" name="le_ServerName">
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="maxLength">
+                  <number>256</number>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="le_ServerAddress">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If empty, X:UO will use the address set in login.cfg found in the Client Path&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="text">
+                  <string>127.0.0.1,2593</string>
+                 </property>
+                 <property name="maxLength">
+                  <number>256</number>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_9">
+                 <item>
+                  <widget class="QLineEdit" name="le_ServerAccount">
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="maxLength">
+                    <number>30</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="cb_LaunchAutologin">
+                   <property name="text">
+                    <string>Auto login</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_10">
+                 <item>
+                  <widget class="QLineEdit" name="le_ServerPassword">
+                   <property name="maxLength">
+                    <number>30</number>
+                   </property>
+                   <property name="echoMode">
+                    <enum>QLineEdit::Password</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="cb_ServerShowPassword">
+                   <property name="text">
+                    <string>Show</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="cb_LaunchSavePassword">
+                   <property name="text">
+                    <string>Save password</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_11">
+                 <item>
+                  <widget class="QLineEdit" name="le_ServerClientPath">
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="maxLength">
+                    <number>256</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QToolButton" name="tb_SetClientPath">
+                   <property name="text">
+                    <string>...</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_2">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_8">
+             <item>
+              <widget class="QPushButton" name="pb_ServerAdd">
+               <property name="text">
+                <string>Add new</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pb_ServerSave">
+               <property name="text">
+                <string>Save</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pb_ServerRemove">
+               <property name="text">
+                <string>Remove</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
          </widget>
-         <widget class="QLabel" name="label_4">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>60</y>
-            <width>81</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Login:</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-         <widget class="QLineEdit" name="le_ServerAccount">
-          <property name="geometry">
-           <rect>
-            <x>95</x>
-            <y>60</y>
-            <width>156</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="maxLength">
-           <number>30</number>
-          </property>
-         </widget>
-         <widget class="QPushButton" name="pb_ServerRemove">
-          <property name="geometry">
-           <rect>
-            <x>335</x>
-            <y>310</y>
-            <width>126</width>
-            <height>23</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Remove</string>
-          </property>
-         </widget>
-         <widget class="QLineEdit" name="le_ServerName">
-          <property name="geometry">
-           <rect>
-            <x>95</x>
-            <y>10</y>
-            <width>371</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="maxLength">
-           <number>256</number>
-          </property>
-         </widget>
-         <widget class="QPushButton" name="pb_ServerSave">
-          <property name="geometry">
-           <rect>
-            <x>175</x>
-            <y>310</y>
-            <width>126</width>
-            <height>23</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Save</string>
-          </property>
-         </widget>
-         <widget class="QLineEdit" name="le_ServerClientPath">
-          <property name="geometry">
-           <rect>
-            <x>95</x>
-            <y>110</y>
-            <width>346</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="maxLength">
-           <number>256</number>
-          </property>
-         </widget>
-         <widget class="QLabel" name="label_22">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>110</y>
-            <width>81</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>UO Client Path:</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-         <widget class="QToolButton" name="tb_SetClientPath">
-          <property name="geometry">
-           <rect>
-            <x>445</x>
-            <y>110</y>
-            <width>20</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>...</string>
-          </property>
-         </widget>
-         <widget class="QCheckBox" name="cb_LaunchSavePassword">
-          <property name="geometry">
-           <rect>
-            <x>345</x>
-            <y>85</y>
-            <width>96</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Save password</string>
-          </property>
-         </widget>
-         <widget class="QCheckBox" name="cb_LaunchAutologin">
-          <property name="geometry">
-           <rect>
-            <x>255</x>
-            <y>60</y>
-            <width>96</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Auto login</string>
-          </property>
-         </widget>
-         <zorder>le_ServerName</zorder>
-         <zorder>le_ServerAddress</zorder>
-         <zorder>le_ServerAccount</zorder>
-         <zorder>le_ServerPassword</zorder>
-         <zorder>pb_ServerAdd</zorder>
-         <zorder>label_5</zorder>
-         <zorder>cb_ServerShowPassword</zorder>
-         <zorder>label_3</zorder>
-         <zorder>label_2</zorder>
-         <zorder>label_4</zorder>
-         <zorder>pb_ServerRemove</zorder>
-         <zorder>pb_ServerSave</zorder>
-         <zorder>le_ServerClientPath</zorder>
-         <zorder>label_22</zorder>
-         <zorder>tb_SetClientPath</zorder>
-         <zorder>cb_LaunchSavePassword</zorder>
-         <zorder>cb_LaunchAutologin</zorder>
         </widget>
         <widget class="QWidget" name="tb_Launcher">
          <attribute name="title">
           <string>Advanced</string>
          </attribute>
-         <widget class="QLabel" name="label_12">
+         <widget class="QWidget" name="layoutWidget">
           <property name="geometry">
            <rect>
-            <x>10</x>
-            <y>265</y>
-            <width>111</width>
-            <height>16</height>
+            <x>0</x>
+            <y>0</y>
+            <width>466</width>
+            <height>336</height>
            </rect>
           </property>
-          <property name="text">
-           <string>Command line:</string>
-          </property>
-         </widget>
-         <widget class="QLineEdit" name="le_CommandLine">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>285</y>
-            <width>456</width>
-            <height>20</height>
-           </rect>
-          </property>
-         </widget>
-         <widget class="QCheckBox" name="cb_LaunchFastLogin">
-          <property name="geometry">
-           <rect>
-            <x>390</x>
-            <y>5</y>
-            <width>81</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Fast login</string>
-          </property>
-         </widget>
-         <widget class="QCheckBox" name="cb_LaunchSaveAero">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>105</y>
-            <width>236</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Save aero (for assistant)</string>
-          </property>
-         </widget>
-         <widget class="QCheckBox" name="cb_LaunchRunUOAM">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>125</y>
-            <width>231</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Run UOAM (UODir/Map/EnhancedMap.exe)</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="label_18">
-          <property name="geometry">
-           <rect>
-            <x>5</x>
-            <y>5</y>
-            <width>81</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Use Character:</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-         <widget class="QLineEdit" name="le_ServerCharacter">
-          <property name="geometry">
-           <rect>
-            <x>90</x>
-            <y>5</y>
-            <width>296</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="maxLength">
-           <number>30</number>
-          </property>
-         </widget>
-         <widget class="QLabel" name="label_23">
-          <property name="geometry">
-           <rect>
-            <x>5</x>
-            <y>55</y>
-            <width>81</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Client Type:</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-         <widget class="QCheckBox" name="cb_ServerUseCrypt">
-          <property name="geometry">
-           <rect>
-            <x>390</x>
-            <y>30</y>
-            <width>81</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Use Crypt</string>
-          </property>
-         </widget>
-         <widget class="QComboBox" name="cb_XuoPath">
-          <property name="geometry">
-           <rect>
-            <x>90</x>
-            <y>80</y>
-            <width>351</width>
-            <height>20</height>
-           </rect>
-          </property>
-         </widget>
-         <widget class="QLabel" name="label_13">
-          <property name="geometry">
-           <rect>
-            <x>5</x>
-            <y>80</y>
-            <width>81</width>
-            <height>16</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>X:UO Folder:</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-         <widget class="QLabel" name="label_21">
-          <property name="geometry">
-           <rect>
-            <x>5</x>
-            <y>30</y>
-            <width>81</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Client Version:</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-         <widget class="QToolButton" name="tb_SetXuoPath">
-          <property name="geometry">
-           <rect>
-            <x>445</x>
-            <y>80</y>
-            <width>20</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>...</string>
-          </property>
-         </widget>
-         <widget class="QComboBox" name="cb_ServerClientType">
-          <property name="geometry">
-           <rect>
-            <x>90</x>
-            <y>55</y>
-            <width>376</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <item>
-           <property name="text">
-            <string>Automatic</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>The Second Age (T2A)</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Renaissance (RE)</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Third Dawn (TD)</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Lord Blackthorn's Revenge (LBR)</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Age Of Shadows (AOS)</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Samurai Empire (SE)</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Stygian Abyss (SA)</string>
-           </property>
-          </item>
-         </widget>
-         <widget class="QLineEdit" name="le_ServerClientVersion">
-          <property name="geometry">
-           <rect>
-            <x>90</x>
-            <y>30</y>
-            <width>91</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>7.0.45.0</string>
-          </property>
-          <property name="maxLength">
-           <number>30</number>
-          </property>
-         </widget>
-         <widget class="QLineEdit" name="le_ServerClientVersion_2">
-          <property name="geometry">
-           <rect>
-            <x>315</x>
-            <y>30</y>
-            <width>71</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>7.0.45.0</string>
-          </property>
-          <property name="maxLength">
-           <number>30</number>
-          </property>
-         </widget>
-         <widget class="QLabel" name="label_24">
-          <property name="geometry">
-           <rect>
-            <x>185</x>
-            <y>30</y>
-            <width>126</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Protocol Client Version:</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-         <widget class="QCheckBox" name="cb_ServerUseProxy">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>310</y>
-            <width>96</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Use proxy</string>
-          </property>
-         </widget>
-         <widget class="QComboBox" name="cb_ServerProxy">
-          <property name="geometry">
-           <rect>
-            <x>110</x>
-            <y>310</y>
-            <width>356</width>
-            <height>20</height>
-           </rect>
-          </property>
-         </widget>
-         <widget class="QCheckBox" name="cb_NoClientWarnings">
-          <property name="geometry">
-           <rect>
-            <x>250</x>
-            <y>105</y>
-            <width>116</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>No client warnings</string>
-          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_5">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_4">
+             <item>
+              <layout class="QVBoxLayout" name="verticalLayout">
+               <item>
+                <widget class="QLabel" name="label_18">
+                 <property name="text">
+                  <string>Use Character:</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_21">
+                 <property name="text">
+                  <string>Client Version:</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_23">
+                 <property name="text">
+                  <string>Client Type:</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_13">
+                 <property name="text">
+                  <string>X:UO Folder:</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QVBoxLayout" name="verticalLayout_2">
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout">
+                 <item>
+                  <widget class="QLineEdit" name="le_ServerCharacter">
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="maxLength">
+                    <number>30</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="cb_LaunchFastLogin">
+                   <property name="text">
+                    <string>Fast login</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_2">
+                 <item>
+                  <widget class="QLineEdit" name="le_ServerClientVersion">
+                   <property name="text">
+                    <string>7.0.45.0</string>
+                   </property>
+                   <property name="maxLength">
+                    <number>30</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="label_24">
+                   <property name="text">
+                    <string>Protocol Version:</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="le_ServerClientVersion_2">
+                   <property name="text">
+                    <string>7.0.45.0</string>
+                   </property>
+                   <property name="maxLength">
+                    <number>30</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="cb_ServerUseCrypt">
+                   <property name="text">
+                    <string>Use Crypt</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QComboBox" name="cb_ServerClientType">
+                 <item>
+                  <property name="text">
+                   <string>Automatic</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>The Second Age (T2A)</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Renaissance (RE)</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Third Dawn (TD)</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Lord Blackthorn's Revenge (LBR)</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Age Of Shadows (AOS)</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Samurai Empire (SE)</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Stygian Abyss (SA)</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_3">
+                 <item>
+                  <widget class="QComboBox" name="cb_XuoPath"/>
+                 </item>
+                 <item>
+                  <widget class="QToolButton" name="tb_SetXuoPath">
+                   <property name="text">
+                    <string>...</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_3">
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_5">
+               <item>
+                <widget class="QCheckBox" name="cb_LaunchSaveAero">
+                 <property name="text">
+                  <string>Save aero (for assistant)</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="cb_NoClientWarnings">
+                 <property name="text">
+                  <string>No client warnings</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="cb_LaunchRunUOAM">
+               <property name="text">
+                <string>Run UOAM (UODir/Map/EnhancedMap.exe)</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_4">
+             <item>
+              <spacer name="verticalSpacer">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_12">
+               <property name="text">
+                <string>Command line:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="le_CommandLine"/>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_6">
+               <item>
+                <widget class="QCheckBox" name="cb_ServerUseProxy">
+                 <property name="text">
+                  <string>Use proxy</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="cb_ServerProxy"/>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+          </layout>
          </widget>
         </widget>
        </widget>
-       <widget class="QPushButton" name="pb_Launch">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>330</y>
-          <width>181</width>
-          <height>41</height>
+          <y>370</y>
+          <width>661</width>
+          <height>27</height>
          </rect>
         </property>
-        <property name="text">
-         <string>Launch</string>
-        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_7">
+         <item>
+          <widget class="QCheckBox" name="cb_LaunchCloseAfterLaunch">
+           <property name="text">
+            <string>Close after launch</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="cb_CheckUpdates">
+           <property name="text">
+            <string>Check Updates</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="cb_Beta">
+           <property name="text">
+            <string>Beta Channel</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
-       <widget class="QCheckBox" name="cb_LaunchCloseAfterLaunch">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>375</y>
-          <width>116</width>
-          <height>20</height>
+          <y>5</y>
+          <width>186</width>
+          <height>361</height>
          </rect>
         </property>
-        <property name="text">
-         <string>Close after launch</string>
-        </property>
-       </widget>
-       <widget class="QCheckBox" name="cb_CheckUpdates">
-        <property name="geometry">
-         <rect>
-          <x>415</x>
-          <y>375</y>
-          <width>131</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Check Updates</string>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
-        </property>
-       </widget>
-       <widget class="QCheckBox" name="cb_Beta">
-        <property name="geometry">
-         <rect>
-          <x>550</x>
-          <y>375</y>
-          <width>116</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Beta Channel</string>
-        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_6">
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>Accounts</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QListWidget" name="lw_ServerList">
+           <property name="dragDropMode">
+            <enum>QAbstractItemView::DragDrop</enum>
+           </property>
+           <property name="defaultDropAction">
+            <enum>Qt::MoveAction</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pb_Launch">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="text">
+            <string>Launch</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </widget>
       <widget class="QWidget" name="tb_Update">
        <attribute name="title">
         <string>Update</string>
        </attribute>
-       <widget class="QListWidget" name="lw_AvailableUpdates">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>30</y>
-          <width>301</width>
-          <height>296</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_16">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>10</y>
-          <width>301</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Available Updates</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pb_ApplyUpdates">
-        <property name="geometry">
-         <rect>
-          <x>165</x>
-          <y>365</y>
-          <width>146</width>
-          <height>25</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Apply Updates</string>
-        </property>
-       </widget>
-       <widget class="QProgressBar" name="pb_UpdateProgress">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>335</y>
-          <width>301</width>
-          <height>23</height>
-         </rect>
-        </property>
-        <property name="value">
-         <number>0</number>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_17">
-        <property name="geometry">
-         <rect>
-          <x>330</x>
-          <y>10</y>
-          <width>341</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Packages / Versions</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-       <widget class="QListWidget" name="lw_Packages">
-        <property name="geometry">
-         <rect>
-          <x>330</x>
-          <y>31</y>
-          <width>341</width>
-          <height>326</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pb_RestoreSelectedVersion">
-        <property name="geometry">
-         <rect>
-          <x>470</x>
-          <y>365</y>
-          <width>201</width>
-          <height>25</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Use Selected Version</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pb_ShowChangelog">
-        <property name="geometry">
-         <rect>
-          <x>330</x>
-          <y>365</y>
-          <width>131</width>
-          <height>25</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Show Changelog</string>
-        </property>
-       </widget>
        <widget class="Line" name="line">
         <property name="geometry">
          <rect>
@@ -867,101 +643,108 @@
          <enum>Qt::Vertical</enum>
         </property>
        </widget>
-       <widget class="QPushButton" name="pb_CheckUpdates">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>10</x>
           <y>365</y>
-          <width>146</width>
-          <height>25</height>
+          <width>661</width>
+          <height>32</height>
          </rect>
         </property>
-        <property name="text">
-         <string>Check New Versions</string>
+        <layout class="QHBoxLayout" name="horizontalLayout_13">
+         <item>
+          <widget class="QPushButton" name="pb_CheckUpdates">
+           <property name="text">
+            <string>Check New Versions</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pb_ApplyUpdates">
+           <property name="text">
+            <string>Apply Updates</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pb_ShowChangelog">
+           <property name="text">
+            <string>Show Changelog</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pb_RestoreSelectedVersion">
+           <property name="text">
+            <string>Use Selected Version</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="layoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>306</width>
+          <height>351</height>
+         </rect>
         </property>
+        <layout class="QVBoxLayout" name="verticalLayout_9">
+         <item>
+          <widget class="QLabel" name="label_16">
+           <property name="text">
+            <string>Available Updates</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QListWidget" name="lw_AvailableUpdates"/>
+         </item>
+         <item>
+          <widget class="QProgressBar" name="pb_UpdateProgress">
+           <property name="value">
+            <number>0</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="layoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>330</x>
+          <y>10</y>
+          <width>341</width>
+          <height>351</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_10">
+         <item>
+          <widget class="QLabel" name="label_17">
+           <property name="text">
+            <string>Packages / Versions</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QListWidget" name="lw_Packages"/>
+         </item>
+        </layout>
        </widget>
       </widget>
       <widget class="QWidget" name="tb_Proxy">
        <attribute name="title">
         <string>Proxy</string>
        </attribute>
-       <widget class="QLabel" name="label_6">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>10</y>
-          <width>266</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Proxy Server List</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-       <widget class="QListWidget" name="lw_ProxyList">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>30</y>
-          <width>266</width>
-          <height>361</height>
-         </rect>
-        </property>
-        <property name="dragDropMode">
-         <enum>QAbstractItemView::DragDrop</enum>
-        </property>
-        <property name="defaultDropAction">
-         <enum>Qt::MoveAction</enum>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_7">
-        <property name="geometry">
-         <rect>
-          <x>285</x>
-          <y>30</y>
-          <width>50</width>
-          <height>13</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Name:</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_8">
-        <property name="geometry">
-         <rect>
-          <x>285</x>
-          <y>57</y>
-          <width>50</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Address:</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_9">
-        <property name="geometry">
-         <rect>
-          <x>570</x>
-          <y>57</y>
-          <width>41</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Port:</string>
-        </property>
-       </widget>
        <widget class="QGroupBox" name="gb_ProxySocks5">
         <property name="geometry">
          <rect>
@@ -1049,169 +832,219 @@
          </property>
         </widget>
        </widget>
-       <widget class="QLineEdit" name="le_ProxyName">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
-          <x>340</x>
+          <x>10</x>
+          <y>10</y>
+          <width>266</width>
+          <height>381</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_11">
+         <item>
+          <widget class="QLabel" name="label_6">
+           <property name="text">
+            <string>Proxy Server List</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QListWidget" name="lw_ProxyList">
+           <property name="dragDropMode">
+            <enum>QAbstractItemView::DragDrop</enum>
+           </property>
+           <property name="defaultDropAction">
+            <enum>Qt::MoveAction</enum>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="layoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>285</x>
           <y>28</y>
-          <width>331</width>
-          <height>20</height>
+          <width>386</width>
+          <height>58</height>
          </rect>
         </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_15">
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_12">
+           <item>
+            <widget class="QLabel" name="label_7">
+             <property name="text">
+              <string>Name:</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_8">
+             <property name="text">
+              <string>Address:</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_13">
+           <item>
+            <widget class="QLineEdit" name="le_ProxyName"/>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_14">
+             <item>
+              <widget class="QLineEdit" name="le_ProxyAddress"/>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_9">
+               <property name="text">
+                <string>Port:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="le_ProxyPort">
+               <property name="maxLength">
+                <number>5</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </item>
+        </layout>
        </widget>
-       <widget class="QLineEdit" name="le_ProxyAddress">
-        <property name="geometry">
-         <rect>
-          <x>340</x>
-          <y>55</y>
-          <width>221</width>
-          <height>20</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="le_ProxyPort">
-        <property name="geometry">
-         <rect>
-          <x>600</x>
-          <y>55</y>
-          <width>71</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="maxLength">
-         <number>5</number>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pb_ProxyAdd">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>285</x>
           <y>215</y>
-          <width>100</width>
-          <height>23</height>
+          <width>386</width>
+          <height>32</height>
          </rect>
         </property>
-        <property name="text">
-         <string>Add New</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pb_ProxyRemove">
-        <property name="geometry">
-         <rect>
-          <x>570</x>
-          <y>215</y>
-          <width>100</width>
-          <height>23</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Remove</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pb_ProxySave">
-        <property name="geometry">
-         <rect>
-          <x>390</x>
-          <y>215</y>
-          <width>100</width>
-          <height>23</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Save</string>
-        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_16">
+         <item>
+          <widget class="QPushButton" name="pb_ProxyAdd">
+           <property name="text">
+            <string>Add New</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pb_ProxySave">
+           <property name="text">
+            <string>Save</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pb_ProxyRemove">
+           <property name="text">
+            <string>Remove</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </widget>
       <widget class="QWidget" name="tb_About">
        <attribute name="title">
         <string>About</string>
        </attribute>
-       <widget class="QLabel" name="label_14">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>10</x>
           <y>0</y>
-          <width>251</width>
-          <height>251</height>
+          <width>661</width>
+          <height>403</height>
          </rect>
         </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="pixmap">
-         <pixmap resource="res.qrc">:/qt/etc/XUO.png</pixmap>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pb_Github">
-        <property name="geometry">
-         <rect>
-          <x>25</x>
-          <y>275</y>
-          <width>231</width>
-          <height>32</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>GitHub</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pb_Website">
-        <property name="geometry">
-         <rect>
-          <x>25</x>
-          <y>300</y>
-          <width>231</width>
-          <height>32</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>WebSite</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pb_Discord">
-        <property name="geometry">
-         <rect>
-          <x>25</x>
-          <y>325</y>
-          <width>231</width>
-          <height>32</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Discord</string>
-        </property>
-       </widget>
-       <widget class="QTextBrowser" name="textBrowser">
-        <property name="geometry">
-         <rect>
-          <x>280</x>
-          <y>5</y>
-          <width>386</width>
-          <height>381</height>
-         </rect>
-        </property>
-        <property name="html">
-         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <layout class="QHBoxLayout" name="horizontalLayout_17">
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_14">
+           <item>
+            <widget class="QLabel" name="label_14">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="pixmap">
+              <pixmap resource="res.qrc">:/qt/etc/XUO.png</pixmap>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pb_Github">
+             <property name="text">
+              <string>GitHub</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pb_Website">
+             <property name="text">
+              <string>WebSite</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pb_Discord">
+             <property name="text">
+              <string>Discord</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pb_TeamMember">
+             <property name="text">
+              <string>Team Member</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QTextBrowser" name="textBrowser">
+           <property name="html">
+            <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.SF NS Text'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;      &lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;      &lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;CrossUO&lt;/span&gt; &lt;br /&gt;Welcome to CrossUO, the very first Ultima Online client with &lt;span style=&quot; font-weight:600;&quot;&gt;real native multiplatform support&lt;/span&gt;.   &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pb_TeamMember">
-        <property name="geometry">
-         <rect>
-          <x>25</x>
-          <y>350</y>
-          <width>231</width>
-          <height>32</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Team Member</string>
-        </property>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </widget>
      </widget>
