@@ -472,6 +472,18 @@ void UpdateManager::generateUpdate(const QString &path, const QString &plat, con
     }
     releaseList[product][release.Version] = release;
 
+
+    for (const auto &prod : releaseList.keys())
+    {
+        for (const auto &rel : releaseList[prod])
+        {
+            if (releaseList[prod][rel.Version].latest == "true")
+            {
+                changesInfo.append(releaseList[prod][rel.Version].FileList);
+            }
+        }
+    }
+
     releaseList["all"]["incremental"].Name = "all";
     releaseList["all"]["incremental"].latest = "false";
     releaseList["all"]["incremental"].Version = "incremental";
