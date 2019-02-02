@@ -81,6 +81,9 @@
               <layout class="QVBoxLayout" name="verticalLayout_7">
                <item>
                 <widget class="QLabel" name="lb_profileName">
+                 <property name="toolTip">
+                  <string>Your profile name shown in the Accounts list</string>
+                 </property>
                  <property name="layoutDirection">
                   <enum>Qt::LeftToRight</enum>
                  </property>
@@ -94,6 +97,9 @@
                </item>
                <item>
                 <widget class="QLabel" name="label_3">
+                 <property name="toolTip">
+                  <string>LoginServer adress</string>
+                 </property>
                  <property name="text">
                   <string>Server Address:</string>
                  </property>
@@ -104,6 +110,9 @@
                </item>
                <item>
                 <widget class="QLabel" name="label_4">
+                 <property name="toolTip">
+                  <string>Your username</string>
+                 </property>
                  <property name="text">
                   <string>Login:</string>
                  </property>
@@ -114,6 +123,9 @@
                </item>
                <item>
                 <widget class="QLabel" name="label_5">
+                 <property name="toolTip">
+                  <string>Password</string>
+                 </property>
                  <property name="text">
                   <string>Password:</string>
                  </property>
@@ -124,6 +136,9 @@
                </item>
                <item>
                 <widget class="QLabel" name="lb_clientPath">
+                 <property name="toolTip">
+                  <string>Path where your Ultima Online data files are located</string>
+                 </property>
                  <property name="text">
                   <string>UO Data Path:</string>
                  </property>
@@ -294,6 +309,9 @@
               <layout class="QVBoxLayout" name="verticalLayout">
                <item>
                 <widget class="QLabel" name="label_18">
+                 <property name="toolTip">
+                  <string>Character Name to use with fast login</string>
+                 </property>
                  <property name="text">
                   <string>Use Character:</string>
                  </property>
@@ -304,6 +322,9 @@
                </item>
                <item>
                 <widget class="QLabel" name="label_21">
+                 <property name="toolTip">
+                  <string>Client version for the server you want to reach</string>
+                 </property>
                  <property name="text">
                   <string>Client Version:</string>
                  </property>
@@ -314,6 +335,9 @@
                </item>
                <item>
                 <widget class="QLabel" name="label_23">
+                 <property name="toolTip">
+                  <string>Ultima Online client expansion (let auto if not sure)</string>
+                 </property>
                  <property name="text">
                   <string>Client Type:</string>
                  </property>
@@ -324,6 +348,9 @@
                </item>
                <item>
                 <widget class="QLabel" name="label_13">
+                 <property name="toolTip">
+                  <string>Path where to store the X:UO Suite (client, assistant, etc.)</string>
+                 </property>
                  <property name="text">
                   <string>X:UO Folder:</string>
                  </property>
@@ -361,6 +388,9 @@
                 <layout class="QHBoxLayout" name="horizontalLayout_2">
                  <item>
                   <widget class="QLineEdit" name="le_ServerClientVersion">
+                   <property name="toolTip">
+                    <string/>
+                   </property>
                    <property name="text">
                     <string>7.0.45.0</string>
                    </property>
@@ -371,6 +401,9 @@
                  </item>
                  <item>
                   <widget class="QLabel" name="label_24">
+                   <property name="toolTip">
+                    <string>Some servers uses different protocol version. If unsure, let it empty)</string>
+                   </property>
                    <property name="text">
                     <string>Protocol Version:</string>
                    </property>
@@ -381,8 +414,11 @@
                  </item>
                  <item>
                   <widget class="QLineEdit" name="le_ServerClientVersion_2">
+                   <property name="toolTip">
+                    <string/>
+                   </property>
                    <property name="text">
-                    <string>7.0.45.0</string>
+                    <string/>
                    </property>
                    <property name="maxLength">
                     <number>30</number>
@@ -391,6 +427,9 @@
                  </item>
                  <item>
                   <widget class="QCheckBox" name="cb_ServerUseCrypt">
+                   <property name="toolTip">
+                    <string> Use an encrypted client (ex. Sphere or OSI need this)</string>
+                   </property>
                    <property name="text">
                     <string>Use Crypt</string>
                    </property>
@@ -466,6 +505,9 @@
               <layout class="QHBoxLayout" name="horizontalLayout_5">
                <item>
                 <widget class="QCheckBox" name="cb_LaunchSaveAero">
+                 <property name="toolTip">
+                  <string/>
+                 </property>
                  <property name="text">
                   <string>Save aero (for assistant)</string>
                  </property>
@@ -499,13 +541,20 @@
              </item>
              <item>
               <widget class="QLabel" name="label_12">
+               <property name="toolTip">
+                <string>Arguments to pass to CrossUO client</string>
+               </property>
                <property name="text">
                 <string>Command line:</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="le_CommandLine"/>
+              <widget class="QLineEdit" name="le_CommandLine">
+               <property name="toolTip">
+                <string>Arguments to pass to Cross client</string>
+               </property>
+              </widget>
              </item>
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_6">
@@ -539,6 +588,9 @@
         <layout class="QHBoxLayout" name="horizontalLayout_7">
          <item>
           <widget class="QCheckBox" name="cb_LaunchCloseAfterLaunch">
+           <property name="toolTip">
+            <string>Close X:UO Launcher after launching the game</string>
+           </property>
            <property name="text">
             <string>Close after launch</string>
            </property>
@@ -559,6 +611,9 @@
          </item>
          <item>
           <widget class="QCheckBox" name="cb_CheckUpdates">
+           <property name="toolTip">
+            <string>Automatically check for updates on start</string>
+           </property>
            <property name="text">
             <string>Check Updates</string>
            </property>
@@ -569,6 +624,9 @@
          </item>
          <item>
           <widget class="QCheckBox" name="cb_Beta">
+           <property name="toolTip">
+            <string>Use Beta Channel for testing preview releases and helping us</string>
+           </property>
            <property name="text">
             <string>Beta Channel</string>
            </property>
