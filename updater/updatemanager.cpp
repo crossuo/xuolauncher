@@ -84,7 +84,7 @@ void UpdateManager::getManifest(const QString &endpoint)
         {
             for (const auto &b : releaseList[p]["latest"].FileList)
             {
-                        releaseFiles.push_back(b);
+                releaseFiles.push_back(b);
             }
         }
         emit packageListReceived(releaseList);
@@ -462,9 +462,14 @@ void UpdateManager::generateUpdate(const QString &path, const QString &plat, con
     release.Name = product;
     release.latest = true;
     if (plat.endsWith("-beta"))
+    {
         release.Version = version + " (beta)";
+    }
     else
+    {
         release.Version = version;
+    }
+
     for (auto e : data)
     {
         release.FileList.push_back(createEntry(e));

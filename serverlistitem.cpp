@@ -21,6 +21,7 @@ CServerListItem::CServerListItem(const QString &name,
     const QString &character,
     const QString &clientVersion,
     const QString &clientPath,
+    const QString &crossUoPath,
     const int &clientType,
     const QString &serverProxy,
     const bool &serveUseProxy,
@@ -32,10 +33,11 @@ CServerListItem::CServerListItem(const QString &name,
     , m_Character(character)
     , m_ClientVersion(clientVersion)
     , m_ClientPath(clientPath)
+    , m_CrossUoPath(crossUoPath)
     , m_ClientType(clientType)
     , m_Proxy(serverProxy)
+    , m_Command("")
     , m_UseProxy(serveUseProxy)
     , m_UseCrypt(serverUseCrypt)
-    , m_Command("")
 {
 }

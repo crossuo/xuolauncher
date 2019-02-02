@@ -20,9 +20,10 @@ private:
     QString m_Character;
     QString m_ClientVersion;
     QString m_ClientPath;
+    QString m_CrossUoPath;
     QString m_ClientType;
-    QString m_Command;
     QString m_Proxy;
+    QString m_Command;
     bool m_UseProxy{ false };
     bool m_UseCrypt{ false };
     bool m_OptionAutologin{ false };
@@ -41,6 +42,7 @@ public:
         const QString &character,
         const QString &clientVersion,
         const QString &clientPath,
+        const QString &crossUoPath,
         const int &clientType,
         const QString &serverProxy,
         const bool &serveUseProxy,
@@ -64,6 +66,9 @@ public:
 
     QString GetClientPath() const { return m_ClientPath; }
     void SetClientPath(const QString &clientPath) { m_ClientPath = clientPath; }
+
+    QString GetCrossUoPath() const { return m_CrossUoPath; }
+    void SetCrossUoPath(const QString &crossUoPath) { m_CrossUoPath = crossUoPath; }
 
     QString GetClientTypeString() const { return m_ClientType; }
     void SetClientTypeFromString(const QString &clientType) { m_ClientType = clientType.toLower(); }

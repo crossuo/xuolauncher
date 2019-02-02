@@ -30,8 +30,8 @@
 #if defined(QT_NO_DEBUG)
 #define UPDATER_HOST "http://update.crossuo.com/"
 #else
-#define UPDATER_HOST "http://update.crossuo.com/"
-//#define UPDATER_HOST "http://192.168.2.14:8089/"
+//#define UPDATER_HOST "http://update.crossuo.com/"
+#define UPDATER_HOST "http://192.168.2.14:8089/"
 #endif
 
 #if BUILD_WINDOWS
@@ -118,17 +118,17 @@ LauncherWindow::LauncherWindow(QWidget *parent)
         this,
         &LauncherWindow::onDownloadProgress);
 
-    connect(
+    /*connect(
         this,
         SIGNAL(updatesListReceived(const QList<CUpdateInfo> &)),
         this,
-        SLOT(onUpdatesListReceived(const QList<CUpdateInfo> &)));
+        SLOT(onUpdatesListReceived(const QList<CUpdateInfo> &)));*/
     connect(
         this,
         SIGNAL(packageListReceived(const QMap<QString, QMap<QString, CReleaseInfo>> &)),
         this,
         SLOT(onPackageListReceived(const QMap<QString, QMap<QString, CReleaseInfo>> &)));
-    connect(this, SIGNAL(fileReceived(const QDir &)), this, SLOT(onFileReceived(const QDir &)));
+    //connect(this, SIGNAL(fileReceived(const QDir &)), this, SLOT(onFileReceived(const QDir &)));
     connect(&m_UpdatesTimer, SIGNAL(timeout()), this, SLOT(onUpdatesTimer()));
 
     setFixedSize(size());
@@ -171,6 +171,37 @@ LauncherWindow::~LauncherWindow()
     m_UpdatesTimer.stop();
 }
 
+bool LauncherWindow::checkUoDataPath(const QDir &path) const
+{
+    const auto clientExe = QFileInfo(path.filePath("client.exe"));
+    const auto loginCfg1 = QFileInfo(path.filePath("Login.cfg"));
+    const auto loginCfg2 = QFileInfo(path.filePath("login.cfg"));
+
+    return clientExe.exists() && (loginCfg1.exists() || loginCfg2.exists());
+}
+
+void LauncherWindow::setTextColor(QWidget *w, Qt::GlobalColor color)
+{
+    auto palette = w->palette();
+    palette.setColor(w->foregroundRole(), color);
+    w->setPalette(palette);
+}
+
+void LauncherWindow::unselectCombobox(QComboBox *w)
+{
+    w->setCurrentIndex(0);
+}
+
+void LauncherWindow::unselectList(QListWidget *w)
+{
+    auto selected = w->currentItem();
+    if (selected)
+    {
+        auto model = w->selectionModel();
+        model->reset();
+    }
+}
+
 void LauncherWindow::onUpdatesTimer()
 {
     if (ui->cb_CheckUpdates->isChecked())
@@ -196,7 +227,7 @@ void LauncherWindow::keyPressEvent(QKeyEvent *event)
     {
         QWidget *focused = QApplication::focusWidget();
 
-        if (focused == ui->lw_ServerList) // Servers list
+        if (focused == ui->lw_ProfileList) // Servers list
             on_pb_ServerRemove_clicked();
         else if (focused == ui->lw_ProxyList) // Proxy list
             on_pb_ProxyRemove_clicked();
@@ -205,17 +236,17 @@ void LauncherWindow::keyPressEvent(QKeyEvent *event)
     event->accept();
 }
 
-void LauncherWindow::on_lw_ServerList_clicked(const QModelIndex &index)
+void LauncherWindow::on_lw_ProfileList_clicked(const QModelIndex &index)
 {
     updateServerFields(index.row());
 }
 
 void LauncherWindow::updateServerFields(const int &index)
 {
-    auto item = static_cast<CServerListItem *>(ui->lw_ServerList->item(index));
+    auto item = static_cast<CServerListItem *>(ui->lw_ProfileList->item(index));
     if (item != nullptr)
     {
-        ui->le_ServerName->setText(item->text());
+        ui->le_ProfileName->setText(item->text());
         ui->le_ServerAddress->setText(item->GetAddress());
         ui->le_ServerAccount->setText(item->GetAccount());
         ui->le_ServerPassword->setText(item->GetPassword());
@@ -238,7 +269,7 @@ void LauncherWindow::updateServerFields(const int &index)
     }
 }
 
-void LauncherWindow::on_lw_ServerList_doubleClicked(const QModelIndex &index)
+void LauncherWindow::on_lw_ProfileList_doubleClicked(const QModelIndex &index)
 {
     Q_UNUSED(index);
 
@@ -253,90 +284,126 @@ void LauncherWindow::on_cb_ServerShowPassword_clicked()
         ui->le_ServerPassword->setEchoMode(QLineEdit::EchoMode::Password);
 }
 
-void LauncherWindow::on_pb_ServerAdd_clicked()
+bool LauncherWindow::validateProfile(bool checkSelected)
 {
-    QString name = ui->le_ServerName->text().toLower();
-
-    if (!name.length())
+    auto selected = static_cast<CServerListItem *>(ui->lw_ProfileList->currentItem());
+    if (checkSelected && selected == nullptr)
     {
-        QMessageBox::critical(this, "Name is empty", "Enter the server name!");
-        return;
+        QMessageBox::critical(this, tr("No profile selected"), tr("Select a profile where to save."));
+        return false;
     }
 
-    for (int i = 0; i < ui->lw_ServerList->count(); i++)
+    auto name = ui->le_ProfileName->text().toLower();
+    if (!name.length())
     {
-        auto item = ui->lw_ServerList->item(i);
-        if (item != nullptr && item->text().toLower() == name)
+        QMessageBox::critical(this, tr("Profile name is empty"), tr("Please enter the profile name."));
+        setTextColor(ui->lb_profileName, Qt::red);
+        ui->le_ProfileName->focusWidget();
+        return false;
+    }
+
+    bool uniqueName = true;
+    for (int i = 0; i < ui->lw_ProfileList->count(); i++)
+    {
+        auto item = ui->lw_ProfileList->item(i);
+        if (item->text().toLower() == name)
         {
-            QMessageBox::critical(this, "Name is already exists", "Server name is already exists!");
-            return;
+            uniqueName &= checkSelected ? selected && item == selected : false;
         }
     }
 
-    auto item = new CServerListItem(
-        ui->le_ServerName->text(),
-        ui->le_ServerAddress->text(),
-        ui->le_ServerAccount->text(),
-        ui->le_ServerPassword->text(),
-        ui->le_ServerCharacter->text(),
-        ui->le_ServerClientVersion->text(),
-        ui->le_ServerClientPath->text(),
-        ui->cb_ServerClientType->currentIndex(),
-        ui->cb_ServerProxy->currentText(),
-        ui->cb_ServerUseProxy->isChecked(),
-        ui->cb_ServerUseCrypt->isChecked());
-    item->SetUseProxy(ui->cb_ServerUseProxy->isChecked());
-    item->SetProxy(ui->cb_ServerProxy->currentText());
+    if (!uniqueName)
+    {
+        QMessageBox::critical(this, tr("Profile name already exists"), tr("Profile name already exists, please chose a new one."));
+        setTextColor(ui->lb_profileName, Qt::red);
+        ui->le_ProfileName->focusWidget();
+        return false;
+    }
+    setTextColor(ui->lb_profileName, Qt::black);
 
-    ui->lw_ServerList->addItem(item);
-    ui->lw_ServerList->setCurrentRow(ui->lw_ServerList->count() - 1);
-    saveServerList();
+    auto uoDataPath = ui->le_ServerClientPath->text();
+    if (!uoDataPath.length())
+    {
+        QMessageBox::critical(this, tr("Ultima Online(tm) install folder"), tr("Please enter the path where to find the Ultima Online(tm) installation."));
+        setTextColor(ui->lb_clientPath, Qt::red);
+        ui->le_ServerClientPath->focusWidget();
+        return false;
+    }
 
-    updateServerFields(ui->lw_ServerList->count() - 1);
+    auto validPath = checkUoDataPath(uoDataPath);
+    if (!validPath)
+    {
+        auto q = QMessageBox::question(this, tr("Invalid Ultima Online(tm) Path"),
+                    tr("Couldn't find Ultima Online(tm) files (client.exe or login.cfg) in this path, do you want to continue?"),
+                    QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
+        if (q == QMessageBox::No)
+        {
+            setTextColor(ui->lb_clientPath, Qt::red);
+            ui->le_ServerClientPath->focusWidget();
+            return false;
+        }
+    }
+    setTextColor(ui->lb_clientPath, Qt::black);
+    return true;
+}
+
+void LauncherWindow::on_pb_ServerAdd_clicked()
+{
+    unselectList(ui->lw_ProfileList);
+
+    ui->le_ProfileName->clear();
+    ui->le_ServerAddress->clear();
+    ui->le_ServerAccount->clear();
+    ui->le_ServerCharacter->clear();
+    ui->le_ServerPassword->clear();
+    ui->le_ServerClientVersion->clear();
+    ui->le_ServerClientPath->clear();
+
+    unselectCombobox(ui->cb_ServerClientType);
+    unselectCombobox(ui->cb_ServerProxy);
+
+    ui->cb_ServerUseProxy->setChecked(false);
+    ui->cb_ServerUseCrypt->setChecked(false);
 }
 
 void LauncherWindow::on_pb_ServerSave_clicked()
 {
-    QString name = ui->le_ServerName->text().toLower();
-
-    if (!name.length())
+    auto selected = static_cast<CServerListItem *>(ui->lw_ProfileList->currentItem());
+    const auto isNew = selected == nullptr;
+    if (!validateProfile(!isNew))
     {
-        QMessageBox::critical(this, "Name is empty", "Enter the server name!");
         return;
     }
 
-    auto selected = static_cast<CServerListItem *>(ui->lw_ServerList->currentItem());
-
-    if (selected == nullptr)
+    if (isNew)
     {
-        QMessageBox::critical(this, "No selected item", "No selected server!");
-        return;
+        auto item = new CServerListItem(
+            ui->le_ProfileName->text(),
+            ui->le_ServerAddress->text(),
+            ui->le_ServerAccount->text(),
+            ui->le_ServerPassword->text(),
+            ui->le_ServerCharacter->text(),
+            ui->le_ServerClientVersion->text(),
+            ui->le_ServerClientPath->text(),
+            ui->cb_XuoPath->currentText(),
+            ui->cb_ServerClientType->currentIndex(),
+            ui->cb_ServerProxy->currentText(),
+            ui->cb_ServerUseProxy->isChecked(),
+            ui->cb_ServerUseCrypt->isChecked());
+        ui->lw_ProfileList->addItem(item);
+
+        const auto pos = ui->lw_ProfileList->count() - 1;
+        selected = static_cast<CServerListItem *>(ui->lw_ProfileList->item(pos));
     }
 
-    for (int i = 0; i < ui->lw_ServerList->count(); i++)
-    {
-        auto item = ui->lw_ServerList->item(i);
-        if (item != nullptr && item->text().toLower() == name)
-        {
-            if (item != nullptr && item != selected)
-            {
-                QMessageBox::critical(
-                    this,
-                    "Name is already exists",
-                    "Server name is already exists (not this item)!");
-                return;
-            }
-
-            break;
-        }
-    }
-    selected->setText(ui->le_ServerName->text());
+    selected->setText(ui->le_ProfileName->text());
     selected->SetAddress(ui->le_ServerAddress->text());
     selected->SetAccount(ui->le_ServerAccount->text());
     selected->SetCharacter(ui->le_ServerCharacter->text());
     selected->SetPassword(ui->le_ServerPassword->text());
     selected->SetClientVersion(ui->le_ServerClientVersion->text());
     selected->SetClientPath(ui->le_ServerClientPath->text());
+    selected->SetCrossUoPath(ui->cb_XuoPath->currentText());
     selected->SetClientType(ui->cb_ServerClientType->currentIndex());
     selected->SetProxy(ui->cb_ServerProxy->currentText());
     selected->SetUseProxy(ui->cb_ServerUseProxy->isChecked());
@@ -347,11 +414,11 @@ void LauncherWindow::on_pb_ServerSave_clicked()
 
 void LauncherWindow::on_pb_ServerRemove_clicked()
 {
-    QListWidgetItem *item = ui->lw_ServerList->currentItem();
+    QListWidgetItem *item = ui->lw_ProfileList->currentItem();
 
     if (item != nullptr)
     {
-        item = ui->lw_ServerList->takeItem(ui->lw_ServerList->row(item));
+        item = ui->lw_ProfileList->takeItem(ui->lw_ProfileList->row(item));
 
         if (item != nullptr)
         {
@@ -364,7 +431,7 @@ void LauncherWindow::on_pb_ServerRemove_clicked()
 
 void LauncherWindow::on_le_CommandLine_textChanged(const QString &arg1)
 {
-    auto selected = static_cast<CServerListItem *>(ui->lw_ServerList->currentItem());
+    auto selected = static_cast<CServerListItem *>(ui->lw_ProfileList->currentItem());
 
     if (selected != nullptr)
         selected->SetCommand(arg1);
@@ -397,7 +464,7 @@ void LauncherWindow::on_pb_ProxyAdd_clicked()
     auto name = ui->le_ProxyName->text().toLower();
     if (!name.length())
     {
-        QMessageBox::critical(this, "Name is empty", "Enter the proxy server name!");
+        QMessageBox::critical(this, tr("Proxy name is empty"), tr("Enter the proxy server name."));
         return;
     }
 
@@ -407,7 +474,7 @@ void LauncherWindow::on_pb_ProxyAdd_clicked()
         if (item != nullptr && item->text().toLower() == name)
         {
             QMessageBox::critical(
-                this, "Name is already exists", "Proxy server name is already exists!");
+                this, tr("Name is already exists"), tr("Proxy server name is already exists!"));
             return;
         }
     }
@@ -432,14 +499,14 @@ void LauncherWindow::on_pb_ProxySave_clicked()
     QString name = ui->le_ProxyName->text().toLower();
     if (!name.length())
     {
-        QMessageBox::critical(this, "Name is empty", "Enter the proxy server name!");
+        QMessageBox::critical(this, tr("Name is empty"), tr("Enter the proxy server name."));
         return;
     }
 
     auto selected = static_cast<CProxyListItem *>(ui->lw_ProxyList->currentItem());
     if (selected == nullptr)
     {
-        QMessageBox::critical(this, "No selected item", "No selected proxy!");
+        QMessageBox::critical(this, tr("No item selected"), tr("No proxy selected."));
         return;
     }
 
@@ -452,8 +519,8 @@ void LauncherWindow::on_pb_ProxySave_clicked()
             {
                 QMessageBox::critical(
                     this,
-                    "Name is already exists",
-                    "Proxy server name is already exists (not this item)!");
+                    tr("Name already exists"),
+                    tr("Proxy server name already exists (not this item)."));
                 return;
             }
 
@@ -489,12 +556,12 @@ void LauncherWindow::on_pb_ProxyRemove_clicked()
     }
 }
 
-QString LauncherWindow::boolToText(const bool &value)
+QString LauncherWindow::boolToText(const bool &value) const
 {
     return value ? "true" : "false";
 }
 
-bool LauncherWindow::rawStringToBool(QString value)
+bool LauncherWindow::rawStringToBool(QString value) const
 {
     value = value.toLower();
     bool result = false;
@@ -507,9 +574,9 @@ bool LauncherWindow::rawStringToBool(QString value)
     return result;
 }
 
-void LauncherWindow::writeCfg()
+void LauncherWindow::writeCfg() const
 {
-    auto item = static_cast<CServerListItem *>(ui->lw_ServerList->currentItem());
+    auto item = static_cast<CServerListItem *>(ui->lw_ProfileList->currentItem());
     if (item == nullptr)
     {
         return;
@@ -585,13 +652,13 @@ void LauncherWindow::saveServerList()
         writer.setAutoFormatting(true);
         writer.writeStartDocument();
 
-        int count = ui->lw_ServerList->count();
+        int count = ui->lw_ProfileList->count();
         writer.writeStartElement("serverlist");
         writer.writeAttribute("version", "0");
         writer.writeAttribute("size", QString::number(count));
         writer.writeAttribute(
             "closeafterlaunch", boolToText(ui->cb_LaunchCloseAfterLaunch->isChecked()));
-        writer.writeAttribute("lastserver", QString::number(ui->lw_ServerList->currentRow()));
+        writer.writeAttribute("lastserver", QString::number(ui->lw_ProfileList->currentRow()));
         writer.writeAttribute("checkupdates", boolToText(ui->cb_CheckUpdates->isChecked()));
         writer.writeAttribute(
             "noclientwarnings", boolToText(ui->cb_NoClientWarnings->isChecked()));
@@ -606,7 +673,7 @@ void LauncherWindow::saveServerList()
 
         for (int i = 0; i < count; i++)
         {
-            auto item = static_cast<CServerListItem *>(ui->lw_ServerList->item(i));
+            auto item = static_cast<CServerListItem *>(ui->lw_ProfileList->item(i));
             if (item != nullptr)
             {
                 writer.writeStartElement("server");
@@ -626,9 +693,10 @@ void LauncherWindow::saveServerList()
                 writer.writeAttribute("optionrunuoam", boolToText(item->GetOptionRunUOAM()));
 
                 writer.writeAttribute("clientversion", item->GetClientVersion());
-                writer.writeAttribute("clientpath", item->GetClientPath());
+                writer.writeAttribute("clientpath", item->GetClientPath());                
                 writer.writeAttribute("clienttype", item->GetClientTypeString());
                 writer.writeAttribute("usecrypt", boolToText(item->GetUseCrypt()));
+                writer.writeAttribute("crossuopath", item->GetCrossUoPath());
 
                 writer.writeEndElement(); // server
             }
@@ -696,7 +764,7 @@ void LauncherWindow::loadProxyList()
 
 void LauncherWindow::loadServerList()
 {
-    ui->lw_ServerList->clear();
+    ui->lw_ProfileList->clear();
 
     QFile file(QCoreApplication::applicationDirPath()+ "/server.xml");
     if (file.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -801,6 +869,9 @@ void LauncherWindow::loadServerList()
                         if (attributes.hasAttribute("clienttype"))
                             item->SetClientTypeFromString(attributes.value("clienttype").toString());
 
+                        if (attributes.hasAttribute("crossuopath"))
+                            item->SetCrossUoPath(attributes.value("crossuopath").toString());
+
                         if (attributes.hasAttribute("command"))
                             item->SetCommand(attributes.value("command").toString());
 
@@ -835,7 +906,7 @@ void LauncherWindow::loadServerList()
                             item->SetOptionRunUOAM(
                                 rawStringToBool(attributes.value("optionrunuoam").toString()));
 
-                        ui->lw_ServerList->addItem(item);
+                        ui->lw_ProfileList->addItem(item);
                     }
                 }
             }
@@ -845,9 +916,9 @@ void LauncherWindow::loadServerList()
         if (clientindex >= 0 && clientindex < ui->cb_XuoPath->count())
             ui->cb_XuoPath->setCurrentIndex(clientindex);
 
-        if (lastServer >= 0 && lastServer < ui->lw_ServerList->count())
+        if (lastServer >= 0 && lastServer < ui->lw_ProfileList->count())
         {
-            ui->lw_ServerList->setCurrentRow(lastServer);
+            ui->lw_ProfileList->setCurrentRow(lastServer);
             updateServerFields(lastServer);
         }
         file.close();
@@ -857,6 +928,11 @@ void LauncherWindow::loadServerList()
 void LauncherWindow::on_tb_SetClientPath_clicked()
 {
     auto clientPath = QCoreApplication::applicationDirPath();
+    auto selectedPath = ui->le_ServerClientPath->text();
+    if (!selectedPath.isEmpty())
+    {
+        clientPath = selectedPath;
+    }
 
     auto r = QMessageBox::Yes;
     auto path = clientPath;
@@ -864,16 +940,15 @@ void LauncherWindow::on_tb_SetClientPath_clicked()
     {
         path = QFileDialog::getExistingDirectory(nullptr, tr("Select UO Client Directory"), clientPath);
         if (path.isEmpty())
+        {
             return;
+        }
         const QDir p(path);
-        const auto clientExe = QFileInfo(p.filePath("client.exe"));
-        const auto loginCfg1 = QFileInfo(p.filePath("Login.cfg"));
-        const auto loginCfg2 = QFileInfo(p.filePath("login.cfg"));
+        const bool isValid = checkUoDataPath(p);
         const auto outlands = QFileInfo(p.filePath("OutlandsUO.exe"));
-        const bool isValid = clientExe.exists() && (loginCfg1.exists() || loginCfg2.exists());
         if (outlands.exists())
         {
-            auto q = QMessageBox::question(this, "IS this Outlands?", tr("Is this a Outlands Client Installation?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
+            auto q = QMessageBox::question(this, tr("Is this Outlands?"), tr("Is this a Outlands Client Installation?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
             if (q == QMessageBox::Yes)
             {
                 ui->le_ServerClientVersion->setText("7.0.15.1");
@@ -883,10 +958,9 @@ void LauncherWindow::on_tb_SetClientPath_clicked()
         }
         if (!isValid)
         {
-            r = QMessageBox::warning(this, "WARNING", tr("Couldn't find 'client.exe' or 'login.cfg'!\nAre you sure you want to use this path?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
+            r = QMessageBox::warning(this, tr("WARNING"), tr("Couldn't find 'client.exe' or 'login.cfg'!\nAre you sure you want to use this path?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
         }
     } while (r != QMessageBox::Yes);
-
 
     if (path.length())
     {
@@ -906,13 +980,10 @@ void LauncherWindow::on_tb_SetXuoPath_clicked()
     {
         path = QFileDialog::getExistingDirectory(nullptr, tr("Select CrossUO client directory"), startPath);
         if (path.isEmpty())
+        {
             return;
-        const QDir p(path);
-        const auto clientExe = QFileInfo(p.filePath("client.exe"));
-        const auto loginCfg1 = QFileInfo(p.filePath("Login.cfg"));
-        const auto loginCfg2 = QFileInfo(p.filePath("login.cfg"));
-        const bool isClientPath = clientExe.exists() && (loginCfg1.exists() || loginCfg2.exists());
-        if (isClientPath)
+        }
+        if (checkUoDataPath(path))
         {
             r = QMessageBox::warning(this, "WARNING", tr("Setting crossuopath to the same as the original Ultima Online Client is not recommended!\nAre you sure to use this path?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
         }
@@ -928,13 +999,12 @@ void LauncherWindow::on_tb_SetXuoPath_clicked()
                 return;
             }
         }
-
         ui->cb_XuoPath->addItem(path);
         ui->cb_XuoPath->setCurrentIndex(ui->cb_XuoPath->count() - 1);
     }
 }
 
-QString LauncherWindow::decodeArgumentString(const char *text, const int &length)
+QString LauncherWindow::decodeArgumentString(const char *text, const int &length) const
 {
     QString result;
     for (int i = 0; i < length; i += 2)
@@ -945,7 +1015,7 @@ QString LauncherWindow::decodeArgumentString(const char *text, const int &length
     return result;
 }
 
-QString LauncherWindow::encodeArgumentString(const char *text, const int &length)
+QString LauncherWindow::encodeArgumentString(const char *text, const int &length) const
 {
     QString result;
     for (int i = 0; i < length; i++)
@@ -969,24 +1039,19 @@ void LauncherWindow::runProgram(const QString &exePath, const QStringList &args,
     }
 }
 
-void LauncherWindow::on_pb_GenerateConfig_clicked()
-{
-    writeCfg();
-}
-
 void LauncherWindow::on_pb_Launch_clicked()
 {
     writeCfg();
 
     auto clientPath = ui->cb_XuoPath->currentText();
-    if (!ui->lw_ServerList->count())
+    if (!ui->lw_ProfileList->count())
     {
         QMessageBox::critical(this, "Error", tr("Configuration not found."));
         ui->tw_Server->setCurrentIndex(1);
         return;
     }
 
-    auto serverItem = static_cast<CServerListItem *>(ui->lw_ServerList->currentItem());
+    auto serverItem = static_cast<CServerListItem *>(ui->lw_ProfileList->currentItem());
     if (serverItem == nullptr)
     {
         QMessageBox::critical(this, tr("Error"), tr("Please select a configuration profile!"));
@@ -1090,35 +1155,35 @@ void LauncherWindow::on_pb_Launch_clicked()
 
 void LauncherWindow::on_cb_LaunchAutologin_clicked()
 {
-    auto item = static_cast<CServerListItem *>(ui->lw_ServerList->currentItem());
+    auto item = static_cast<CServerListItem *>(ui->lw_ProfileList->currentItem());
     if (item != nullptr)
         item->SetOptionAutologin(ui->cb_LaunchAutologin->isChecked());
 }
 
 void LauncherWindow::on_cb_LaunchSavePassword_clicked()
 {
-    auto item = static_cast<CServerListItem *>(ui->lw_ServerList->currentItem());
+    auto item = static_cast<CServerListItem *>(ui->lw_ProfileList->currentItem());
     if (item != nullptr)
         item->SetOptionSavePassword(ui->cb_LaunchSavePassword->isChecked());
 }
 
 void LauncherWindow::on_cb_LaunchSaveAero_clicked()
 {
-    auto item = static_cast<CServerListItem *>(ui->lw_ServerList->currentItem());
+    auto item = static_cast<CServerListItem *>(ui->lw_ProfileList->currentItem());
     if (item != nullptr)
         item->SetOptionSaveAero(ui->cb_LaunchSaveAero->isChecked());
 }
 
 void LauncherWindow::on_cb_LaunchFastLogin_clicked()
 {
-    auto item = static_cast<CServerListItem *>(ui->lw_ServerList->currentItem());
+    auto item = static_cast<CServerListItem *>(ui->lw_ProfileList->currentItem());
     if (item != nullptr)
         item->SetOptionFastLogin(ui->cb_LaunchFastLogin->isChecked());
 }
 
 void LauncherWindow::on_cb_LaunchRunUOAM_clicked()
 {
-    auto item = static_cast<CServerListItem *>(ui->lw_ServerList->currentItem());
+    auto item = static_cast<CServerListItem *>(ui->lw_ProfileList->currentItem());
     if (item != nullptr)
         item->SetOptionRunUOAM(ui->cb_LaunchRunUOAM->isChecked());
 }
@@ -1273,9 +1338,9 @@ void LauncherWindow::on_pb_ApplyUpdates_clicked()
 
     if (QMessageBox::question(
             this,
-            "Updates notification",
-            "Close all XuoUO instances and press 'Yes'.\nPress "
-            "'No' for cancel.") != QMessageBox::Yes)
+            tr("Updates notification"),
+            tr("Close all CrossUO client instances and press 'Yes'.\nPress "),
+            tr("'No' for cancel.")) != QMessageBox::Yes)
         return;
 
     ui->pb_CheckUpdates->setEnabled(false);

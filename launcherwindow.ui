@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>681</width>
-    <height>429</height>
+    <height>434</height>
    </rect>
   </property>
   <property name="font">
@@ -54,7 +54,7 @@
          <rect>
           <x>200</x>
           <y>0</y>
-          <width>481</width>
+          <width>476</width>
           <height>371</height>
          </rect>
         </property>
@@ -69,7 +69,7 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>10</y>
+            <y>5</y>
             <width>466</width>
             <height>331</height>
            </rect>
@@ -80,7 +80,7 @@
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_7">
                <item>
-                <widget class="QLabel" name="label_2">
+                <widget class="QLabel" name="lb_profileName">
                  <property name="layoutDirection">
                   <enum>Qt::LeftToRight</enum>
                  </property>
@@ -123,9 +123,9 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="label_22">
+                <widget class="QLabel" name="lb_clientPath">
                  <property name="text">
-                  <string>UO Client Path:</string>
+                  <string>UO Data Path:</string>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -137,7 +137,7 @@
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_8">
                <item>
-                <widget class="QLineEdit" name="le_ServerName">
+                <widget class="QLineEdit" name="le_ProfileName">
                  <property name="text">
                   <string/>
                  </property>
@@ -251,7 +251,7 @@
              <item>
               <widget class="QPushButton" name="pb_ServerAdd">
                <property name="text">
-                <string>Add new</string>
+                <string>New</string>
                </property>
               </widget>
              </item>
@@ -278,13 +278,13 @@
          <attribute name="title">
           <string>Advanced</string>
          </attribute>
-         <widget class="QWidget" name="layoutWidget">
+         <widget class="QWidget" name="layoutWidget1">
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>0</y>
+            <y>5</y>
             <width>466</width>
-            <height>336</height>
+            <height>331</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -534,13 +534,13 @@
          </widget>
         </widget>
        </widget>
-       <widget class="QWidget" name="layoutWidget">
+       <widget class="QWidget" name="layoutWidget2">
         <property name="geometry">
          <rect>
           <x>10</x>
           <y>370</y>
           <width>661</width>
-          <height>27</height>
+          <height>28</height>
          </rect>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_7">
@@ -583,7 +583,7 @@
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="layoutWidget">
+       <widget class="QWidget" name="layoutWidget3">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -604,7 +604,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QListWidget" name="lw_ServerList">
+          <widget class="QListWidget" name="lw_ProfileList">
            <property name="dragDropMode">
             <enum>QAbstractItemView::DragDrop</enum>
            </property>
@@ -643,7 +643,7 @@
          <enum>Qt::Vertical</enum>
         </property>
        </widget>
-       <widget class="QWidget" name="layoutWidget">
+       <widget class="QWidget" name="layoutWidget4">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -683,7 +683,7 @@
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="layoutWidget">
+       <widget class="QWidget" name="layoutWidget5">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -715,7 +715,7 @@
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="layoutWidget">
+       <widget class="QWidget" name="layoutWidget6">
         <property name="geometry">
          <rect>
           <x>330</x>
@@ -749,7 +749,7 @@
         <property name="geometry">
          <rect>
           <x>285</x>
-          <y>83</y>
+          <y>105</y>
           <width>386</width>
           <height>126</height>
          </rect>
@@ -832,7 +832,7 @@
          </property>
         </widget>
        </widget>
-       <widget class="QWidget" name="layoutWidget">
+       <widget class="QWidget" name="layoutWidget7">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -864,13 +864,13 @@
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="layoutWidget">
+       <widget class="QWidget" name="layoutWidget8">
         <property name="geometry">
          <rect>
           <x>285</x>
           <y>28</y>
           <width>386</width>
-          <height>58</height>
+          <height>68</height>
          </rect>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_15">
@@ -928,11 +928,11 @@
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="layoutWidget">
+       <widget class="QWidget" name="layoutWidget9">
         <property name="geometry">
          <rect>
           <x>285</x>
-          <y>215</y>
+          <y>240</y>
           <width>386</width>
           <height>32</height>
          </rect>
@@ -979,13 +979,13 @@
        <attribute name="title">
         <string>About</string>
        </attribute>
-       <widget class="QWidget" name="layoutWidget">
+       <widget class="QWidget" name="layoutWidget10">
         <property name="geometry">
          <rect>
           <x>10</x>
           <y>0</y>
           <width>661</width>
-          <height>403</height>
+          <height>396</height>
          </rect>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_17">
@@ -1037,10 +1037,10 @@
             <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.SF NS Text'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;      &lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;      &lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;CrossUO&lt;/span&gt; &lt;br /&gt;Welcome to CrossUO, the very first Ultima Online client with &lt;span style=&quot; font-weight:600;&quot;&gt;real native multiplatform support&lt;/span&gt;.   &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.SF NS Text'; font-size:13pt;&quot;&gt;      &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.SF NS Text'; font-size:13pt;&quot;&gt;      &lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.SF NS Text'; font-size:13pt; font-weight:600;&quot;&gt;CrossUO&lt;/span&gt;&lt;span style=&quot; font-family:'.SF NS Text'; font-size:13pt;&quot;&gt; &lt;br /&gt;Welcome to CrossUO, the very first Ultima Online client with &lt;/span&gt;&lt;span style=&quot; font-family:'.SF NS Text'; font-size:13pt; font-weight:600;&quot;&gt;real native multiplatform support&lt;/span&gt;&lt;span style=&quot; font-family:'.SF NS Text'; font-size:13pt;&quot;&gt;.   &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
           </widget>
          </item>
@@ -1054,11 +1054,11 @@ p, li { white-space: pre-wrap; }
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>
-  <tabstop>lw_ServerList</tabstop>
+  <tabstop>lw_ProfileList</tabstop>
   <tabstop>le_CommandLine</tabstop>
   <tabstop>cb_LaunchSaveAero</tabstop>
   <tabstop>cb_LaunchFastLogin</tabstop>
-  <tabstop>le_ServerName</tabstop>
+  <tabstop>le_ProfileName</tabstop>
   <tabstop>le_ServerAddress</tabstop>
   <tabstop>le_ServerAccount</tabstop>
   <tabstop>le_ServerPassword</tabstop>

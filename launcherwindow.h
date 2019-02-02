@@ -11,6 +11,7 @@
 
 #include <QMainWindow>
 #include <QCloseEvent>
+#include <QComboBox>
 #include <QKeyEvent>
 #include "changelogform.h"
 #include "updater/updatemanager.h"
@@ -34,8 +35,8 @@ protected:
     void keyPressEvent(QKeyEvent *event);
 
 private slots:
-    void on_lw_ServerList_clicked(const QModelIndex &index);
-    void on_lw_ServerList_doubleClicked(const QModelIndex &index);
+    void on_lw_ProfileList_clicked(const QModelIndex &index);
+    void on_lw_ProfileList_doubleClicked(const QModelIndex &index);
     void on_cb_ServerShowPassword_clicked();
     void on_pb_ServerAdd_clicked();
     void on_pb_ServerSave_clicked();
@@ -48,7 +49,6 @@ private slots:
     void on_pb_ProxyRemove_clicked();
     void on_tb_SetXuoPath_clicked();
     void on_pb_Launch_clicked();
-    void on_pb_GenerateConfig_clicked();
     void on_cb_LaunchAutologin_clicked();
     void on_cb_LaunchSavePassword_clicked();
     void on_cb_LaunchSaveAero_clicked();
@@ -62,22 +62,17 @@ private slots:
     void on_lw_Packages_doubleClicked(const QModelIndex &index);
     void on_tb_SetClientPath_clicked();
     void on_cb_Beta_clicked();
+    void on_pb_Github_clicked();
+    void on_pb_TeamMember_clicked();
+    void on_pb_Website_clicked();
+    void on_pb_Discord_clicked();
 
     void onUpdatesListReceived(const QList<CFileInfo> &list);
     void onPackageListReceived(const QMap<QString, QMap<QString, CReleaseInfo>> &packages);
     void onFileReceived(const QString &name);
     void onUpdatesTimer();
     void onDownloadProgress(qint64 bytesRead, qint64 totalBytes);
-
     void unzipPackage(const QString &filename, const QString &toPath);
-
-    void on_pb_Github_clicked();
-
-    void on_pb_TeamMember_clicked();
-
-    void on_pb_Website_clicked();
-
-    void on_pb_Discord_clicked();
 
 signals:
     void updatesListReceived(const QList<CFileInfo> &);
@@ -98,19 +93,22 @@ private:
     QTimer m_UpdatesTimer;
 
     void updateServerFields(const int &index);
-    QString boolToText(const bool &value);
-
-    bool rawStringToBool(QString value);
-    void writeCfg();
+    void writeCfg() const;
     void saveProxyList();
     void saveServerList();
     void loadProxyList();
     void loadServerList();
+    bool checkUoDataPath(const QDir &path) const;
+    bool validateProfile(bool checkSelected = false);
 
-    QString decodeArgumentString(const char *text, const int &length);
-    QString encodeArgumentString(const char *text, const int &length);
+    void unselectCombobox(QComboBox *w);
+    void unselectList(QListWidget *w);
+    void setTextColor(QWidget *w, Qt::GlobalColor color);
+    QString boolToText(const bool &value) const;
+    bool rawStringToBool(QString value) const;
+
+    QString decodeArgumentString(const char *text, const int &length) const;
+    QString encodeArgumentString(const char *text, const int &length) const;
 
     void runProgram(const QString &exePath, const QStringList &args, const QString &directory);
-    void updateXUOAFeaturesCode();
-    void updateXuoFeaturesCode();
 };
