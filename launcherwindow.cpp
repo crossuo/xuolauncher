@@ -1348,9 +1348,9 @@ void LauncherWindow::on_pb_ApplyUpdates_clicked()
     if (QMessageBox::question(
             this,
             tr("Updates notification"),
-            tr("Close all CrossUO client instances and press 'Yes'.\nPress "),
-            tr("'No' for cancel.")) != QMessageBox::Yes)
-        return;
+            tr("Close all CrossUO client instances and press 'Yes'.\nPress 'No' for cancel."),
+            QMessageBox::Yes | QMessageBox::No, QMessageBox::No) != QMessageBox::Yes)
+      return;
 
     ui->pb_CheckUpdates->setEnabled(false);
     ui->pb_ApplyUpdates->setEnabled(false);

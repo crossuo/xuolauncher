@@ -82,11 +82,18 @@ void UpdateManager::getManifest(const QString &endpoint)
 
         for (const auto &p : releaseList.keys())
         {
-            for (const auto &b : releaseList[p]["latest"].FileList)
+            for (const auto &r : releaseList[p])
             {
-                releaseFiles.push_back(b);
+                if (r.latest == "true")
+                {
+                    for (const auto &file : r.FileList)
+                    {
+                        releaseFiles.push_back(file);
+                    }
+                }
             }
         }
+
         emit packageListReceived(releaseList);
         emit updatesListReceived(releaseFiles);
     });
@@ -216,11 +223,9 @@ void UpdateManager::readManifest(const QString &xmlData)
     releaseList.clear();
 
     bool launcher = false;
-    bool latest = false;
     QString tmp;
     QString version;
     QString prod;
-    QString latestS;
     QXmlStreamReader reader(xmlData);
     while (!reader.atEnd() && !reader.hasError())
     {
@@ -232,21 +237,11 @@ void UpdateManager::readManifest(const QString &xmlData)
                 CReleaseInfo release;
                 ReadAttribute(release.Name, "name");
                 ReadAttribute(release.Version, "version");
-                ReadAttribute(latestS, "latest");
+                ReadAttribute(release.latest, "latest");
 
                 prod = release.Name;
                 launcher = prod == "X:UO Launcher";
-                latest = latestS == "true";
-                if (latest)
-                {
-                    version = "latest";
-                }
-                else
-                {
-                    version = release.Version;
-                }
-
-
+                version = release.Version;
                 releaseList[prod][version] = release;
             }
             else if (reader.name().toString().trimmed().toLower() == "file")
@@ -305,7 +300,7 @@ void UpdateManager::writeManifest(const QString &filename)
             stream.writeStartElement("release");
             stream.writeAttribute("name", rel.Name);
             stream.writeAttribute("version", rel.Version);
-            stream.writeAttribute("latest",rel.latest ? "true" : "false");
+            stream.writeAttribute("latest",rel.latest);
 
             for (const auto &file : rel.FileList)
             {
@@ -450,17 +445,18 @@ void UpdateManager::generateUpdate(const QString &path, const QString &plat, con
     {
         for (const auto &rel : releaseList[prod])
         {
-            releaseList[prod][rel.Version].latest = false;
+            if (prod == product)
+            {
+                releaseList[prod][rel.Version].latest = "false";
+            }
         }
     }
-
-    auto a = releaseList;
 
     changesInfo = releaseList["all"]["incremental"].FileList;
 
     CReleaseInfo release;
     release.Name = product;
-    release.latest = true;
+    release.latest = "true";
     if (plat.endsWith("-beta"))
     {
         release.Version = version + " (beta)";
@@ -477,7 +473,7 @@ void UpdateManager::generateUpdate(const QString &path, const QString &plat, con
     releaseList[product][release.Version] = release;
 
     releaseList["all"]["incremental"].Name = "all";
-    releaseList["all"]["incremental"].latest = false;
+    releaseList["all"]["incremental"].latest = "false";
     releaseList["all"]["incremental"].Version = "incremental";
     releaseList["all"]["incremental"].FileList = changesInfo;
 
