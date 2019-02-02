@@ -437,6 +437,11 @@ void LauncherWindow::on_pb_ServerRemove_clicked()
         {
             delete item;
 
+            if (ui->lw_ProfileList->count() == 0)
+            {
+                ui->pb_ServerAdd->setEnabled(false);
+            }
+
             saveServerList();
         }
     }
