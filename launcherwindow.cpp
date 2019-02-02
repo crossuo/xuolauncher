@@ -30,8 +30,8 @@
 #if defined(QT_NO_DEBUG)
 #define UPDATER_HOST "http://update.crossuo.com/"
 #else
-//#define UPDATER_HOST "http://update.crossuo.com/"
-#define UPDATER_HOST "http://192.168.2.14:8089/"
+#define UPDATER_HOST "http://update.crossuo.com/"
+//#define UPDATER_HOST "http://192.168.2.14:8089/"
 #endif
 
 #if BUILD_WINDOWS
@@ -1410,11 +1410,16 @@ void LauncherWindow::on_pb_RestoreSelectedVersion_clicked()
 
     m_FilesToUpdateCount = item->m_Package.FileList.count();
     m_DownloadingPackageTotal = m_FilesToUpdateCount;
+    m_LauncherFoundInUpdates = item->m_Package.Name == "X:UO Launcher";
     for (auto file : item->m_Package.FileList)
     {
         ui->pb_UpdateProgress->setValue(0);
+        auto dst = ui->cb_XuoPath->currentText();
+        if (file.inLauncher)
+        {
+            dst = qApp->applicationDirPath();
+        }
         const auto src = file.ZipFileName;
-        const auto dst = ui->cb_XuoPath->currentText();
         auto cb = [this, dst](const QString &f) {
             unzipPackage(f, dst);
             onFileReceived(f);
