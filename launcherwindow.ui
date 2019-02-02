@@ -59,7 +59,7 @@
          </rect>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>1</number>
         </property>
         <widget class="QWidget" name="tb_Config">
          <attribute name="title">
@@ -468,13 +468,6 @@
                 <widget class="QCheckBox" name="cb_LaunchSaveAero">
                  <property name="text">
                   <string>Save aero (for assistant)</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="cb_NoClientWarnings">
-                 <property name="text">
-                  <string>No client warnings</string>
                  </property>
                 </widget>
                </item>

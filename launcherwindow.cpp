@@ -258,6 +258,8 @@ void LauncherWindow::updateServerFields(const int &index)
         ui->cb_ServerClientType->setCurrentIndex(item->GetClientType());
         ui->cb_ServerUseCrypt->setChecked(item->GetUseCrypt());
 
+        ui->cb_XuoPath->setCurrentText(item->GetCrossUoPath());
+
         ui->cb_LaunchAutologin->setChecked(item->GetOptionAutologin());
         ui->cb_LaunchSavePassword->setChecked(item->GetOptionSavePassword());
         ui->cb_LaunchSaveAero->setChecked(item->GetOptionSaveAero());
@@ -660,8 +662,6 @@ void LauncherWindow::saveServerList()
             "closeafterlaunch", boolToText(ui->cb_LaunchCloseAfterLaunch->isChecked()));
         writer.writeAttribute("lastserver", QString::number(ui->lw_ProfileList->currentRow()));
         writer.writeAttribute("checkupdates", boolToText(ui->cb_CheckUpdates->isChecked()));
-        writer.writeAttribute(
-            "noclientwarnings", boolToText(ui->cb_NoClientWarnings->isChecked()));
         writer.writeAttribute("beta", boolToText(ui->cb_Beta->isChecked()));
 
         for (int i = 0; i < ui->cb_XuoPath->count(); i++)
@@ -811,10 +811,6 @@ void LauncherWindow::loadServerList()
                     if (attributes.hasAttribute("checkupdates"))
                         ui->cb_CheckUpdates->setChecked(
                             rawStringToBool(attributes.value("checkupdates").toString()));
-
-                    if (attributes.hasAttribute("noclientwarnings"))
-                        ui->cb_NoClientWarnings->setChecked(
-                            rawStringToBool(attributes.value("noclientwarnings").toString()));
 
                     if (attributes.hasAttribute("beta"))
                         ui->cb_Beta->setChecked(
@@ -1106,9 +1102,6 @@ void LauncherWindow::on_pb_Launch_clicked()
     if (character.length())
         args.push_back("--autologinname=" +
                    encodeArgumentString(character.toStdString().c_str(), character.length()));
-
-    if (ui->cb_NoClientWarnings->isChecked())
-        args.push_back("--nowarnings");
 
     if (serverItem->GetUseProxy())
     {
