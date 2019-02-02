@@ -79,7 +79,7 @@ void UpdateManager::getManifest(const QString &endpoint)
         const auto data = readReply(reply);
         readManifest(data);
         QList<CFileInfo> releaseFiles;
-        //FIXME : just add most recent version
+
         for (const auto &p : releaseList.keys())
         {
             for (const auto &b : releaseList[p]["latest"].FileList)
@@ -236,7 +236,7 @@ void UpdateManager::readManifest(const QString &xmlData)
 
                 prod = release.Name;
                 launcher = prod == "X:UO Launcher";
-                latest = latestS == "yes";
+                latest = latestS == "true";
                 if (latest)
                 {
                     version = "latest";
@@ -305,6 +305,7 @@ void UpdateManager::writeManifest(const QString &filename)
             stream.writeStartElement("release");
             stream.writeAttribute("name", rel.Name);
             stream.writeAttribute("version", rel.Version);
+            stream.writeAttribute("latest",rel.latest ? "true" : "false");
 
             for (const auto &file : rel.FileList)
             {
@@ -445,10 +446,21 @@ void UpdateManager::generateUpdate(const QString &path, const QString &plat, con
     QTextStream xmlData(&xml);
     readManifest(xmlData.readAll());
 
+    for (const auto &prod : releaseList.keys())
+    {
+        for (const auto &rel : releaseList[prod])
+        {
+            releaseList[prod][rel.Version].latest = false;
+        }
+    }
+
+    auto a = releaseList;
+
     changesInfo = releaseList["all"]["incremental"].FileList;
 
     CReleaseInfo release;
     release.Name = product;
+    release.latest = true;
     if (plat.endsWith("-beta"))
         release.Version = version + " (beta)";
     else
@@ -460,6 +472,7 @@ void UpdateManager::generateUpdate(const QString &path, const QString &plat, con
     releaseList[product][release.Version] = release;
 
     releaseList["all"]["incremental"].Name = "all";
+    releaseList["all"]["incremental"].latest = false;
     releaseList["all"]["incremental"].Version = "incremental";
     releaseList["all"]["incremental"].FileList = changesInfo;
 
