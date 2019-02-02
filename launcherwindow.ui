@@ -59,7 +59,7 @@
          </rect>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="tb_Config">
          <attribute name="title">
@@ -978,7 +978,7 @@
           <x>10</x>
           <y>0</y>
           <width>661</width>
-          <height>396</height>
+          <height>403</height>
          </rect>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_17">
@@ -1030,10 +1030,10 @@
             <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.SF NS Text'; font-size:13pt;&quot;&gt;      &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.SF NS Text'; font-size:13pt;&quot;&gt;      &lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.SF NS Text'; font-size:13pt; font-weight:600;&quot;&gt;CrossUO&lt;/span&gt;&lt;span style=&quot; font-family:'.SF NS Text'; font-size:13pt;&quot;&gt; &lt;br /&gt;Welcome to CrossUO, the very first Ultima Online client with &lt;/span&gt;&lt;span style=&quot; font-family:'.SF NS Text'; font-size:13pt; font-weight:600;&quot;&gt;real native multiplatform support&lt;/span&gt;&lt;span style=&quot; font-family:'.SF NS Text'; font-size:13pt;&quot;&gt;.   &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.SF NS Text'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;      &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;      &lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;CrossUO&lt;/span&gt; &lt;br /&gt;Welcome to CrossUO, the very first Ultima Online client with &lt;span style=&quot; font-weight:600;&quot;&gt;real native multiplatform support&lt;/span&gt;.   &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
           </widget>
          </item>
@@ -1047,18 +1047,44 @@ p, li { white-space: pre-wrap; }
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>
+  <tabstop>tw_Main</tabstop>
   <tabstop>lw_ProfileList</tabstop>
-  <tabstop>le_CommandLine</tabstop>
-  <tabstop>cb_LaunchSaveAero</tabstop>
-  <tabstop>cb_LaunchFastLogin</tabstop>
+  <tabstop>pb_Launch</tabstop>
+  <tabstop>cb_LaunchCloseAfterLaunch</tabstop>
+  <tabstop>tw_Server</tabstop>
   <tabstop>le_ProfileName</tabstop>
   <tabstop>le_ServerAddress</tabstop>
   <tabstop>le_ServerAccount</tabstop>
+  <tabstop>cb_LaunchAutologin</tabstop>
   <tabstop>le_ServerPassword</tabstop>
   <tabstop>cb_ServerShowPassword</tabstop>
+  <tabstop>cb_LaunchSavePassword</tabstop>
+  <tabstop>le_ServerClientPath</tabstop>
+  <tabstop>tb_SetClientPath</tabstop>
   <tabstop>pb_ServerAdd</tabstop>
   <tabstop>pb_ServerSave</tabstop>
   <tabstop>pb_ServerRemove</tabstop>
+  <tabstop>cb_CheckUpdates</tabstop>
+  <tabstop>cb_Beta</tabstop>
+  <tabstop>le_ServerCharacter</tabstop>
+  <tabstop>cb_LaunchFastLogin</tabstop>
+  <tabstop>le_ServerClientVersion</tabstop>
+  <tabstop>le_ServerClientVersion_2</tabstop>
+  <tabstop>cb_ServerUseCrypt</tabstop>
+  <tabstop>cb_ServerClientType</tabstop>
+  <tabstop>cb_XuoPath</tabstop>
+  <tabstop>tb_SetXuoPath</tabstop>
+  <tabstop>cb_LaunchSaveAero</tabstop>
+  <tabstop>cb_LaunchRunUOAM</tabstop>
+  <tabstop>le_CommandLine</tabstop>
+  <tabstop>cb_ServerUseProxy</tabstop>
+  <tabstop>cb_ServerProxy</tabstop>
+  <tabstop>lw_AvailableUpdates</tabstop>
+  <tabstop>lw_Packages</tabstop>
+  <tabstop>pb_CheckUpdates</tabstop>
+  <tabstop>pb_ApplyUpdates</tabstop>
+  <tabstop>pb_ShowChangelog</tabstop>
+  <tabstop>pb_RestoreSelectedVersion</tabstop>
   <tabstop>lw_ProxyList</tabstop>
   <tabstop>le_ProxyName</tabstop>
   <tabstop>le_ProxyAddress</tabstop>
@@ -1070,7 +1096,11 @@ p, li { white-space: pre-wrap; }
   <tabstop>pb_ProxyAdd</tabstop>
   <tabstop>pb_ProxySave</tabstop>
   <tabstop>pb_ProxyRemove</tabstop>
-  <tabstop>tw_Server</tabstop>
+  <tabstop>pb_Github</tabstop>
+  <tabstop>pb_Website</tabstop>
+  <tabstop>pb_Discord</tabstop>
+  <tabstop>pb_TeamMember</tabstop>
+  <tabstop>textBrowser</tabstop>
  </tabstops>
  <resources>
   <include location="res.qrc"/>
