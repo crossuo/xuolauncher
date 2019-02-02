@@ -154,7 +154,13 @@ LauncherWindow::LauncherWindow(QWidget *parent)
         ui->cb_XuoPath->addItem(appData);
         ui->cb_XuoPath->setCurrentIndex(ui->cb_XuoPath->count() - 1);
     }
-on_cb_XuoPath_currentIndexChanged(ui->cb_XuoPath->currentIndex());
+
+    if (ui->lw_ProfileList->count() == 0)
+    {
+        ui->pb_ServerAdd->setEnabled(false);
+    }
+
+    on_cb_XuoPath_currentIndexChanged(ui->cb_XuoPath->currentIndex());
     m_UpdatesTimer.start(15 * 60 * 1000);
 }
 
