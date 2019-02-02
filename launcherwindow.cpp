@@ -398,7 +398,7 @@ void LauncherWindow::on_pb_ServerSave_clicked()
             ui->cb_ServerProxy->currentText(),
             ui->cb_ServerUseProxy->isChecked(),
             ui->cb_ServerUseCrypt->isChecked());
-        ui->lw_ProfileList->addItem(item);
+            ui->lw_ProfileList->addItem(item);
 
         const auto pos = ui->lw_ProfileList->count() - 1;
         selected = static_cast<CServerListItem *>(ui->lw_ProfileList->item(pos));
@@ -416,6 +416,11 @@ void LauncherWindow::on_pb_ServerSave_clicked()
     selected->SetProxy(ui->cb_ServerProxy->currentText());
     selected->SetUseProxy(ui->cb_ServerUseProxy->isChecked());
     selected->SetUseCrypt(ui->cb_ServerUseCrypt->isChecked());
+
+    if (ui->lw_ProfileList->count() > 0)
+    {
+        ui->pb_ServerAdd->setEnabled(true);
+    }
 
     saveServerList();
 }
