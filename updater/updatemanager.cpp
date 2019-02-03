@@ -452,7 +452,7 @@ void UpdateManager::generateUpdate(const QString &path, const QString &plat, con
         }
     }
 
-    changesInfo = releaseList["all"]["incremental"].FileList;
+    //changesInfo = releaseList["all"]["incremental"].FileList;
 
     CReleaseInfo release;
     release.Name = product;
@@ -472,7 +472,7 @@ void UpdateManager::generateUpdate(const QString &path, const QString &plat, con
     }
     releaseList[product][release.Version] = release;
 
-
+    changesInfo.clear();
     for (const auto &prod : releaseList.keys())
     {
         for (const auto &rel : releaseList[prod])
