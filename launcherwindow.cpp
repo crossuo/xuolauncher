@@ -1115,7 +1115,7 @@ void LauncherWindow::on_pb_Launch_clicked()
         args.push_back("--aero");
 #endif
 
-    args.push_back("\"--login=" + serverItem->GetAddress() + "\"");
+    args.push_back("--login=\"" + serverItem->GetAddress() + "\"");
 
     QString account = serverItem->GetAccount();
     QString password = serverItem->GetPassword();
