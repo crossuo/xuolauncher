@@ -131,6 +131,9 @@ LauncherWindow::LauncherWindow(QWidget *parent)
     //connect(this, SIGNAL(fileReceived(const QDir &)), this, SLOT(onFileReceived(const QDir &)));
     connect(&m_UpdatesTimer, SIGNAL(timeout()), this, SLOT(onUpdatesTimer()));
 
+    auto p = QPixmap(":/qt/etc/XUO.png");
+    setWindowIcon(p);
+
     setFixedSize(size());
 
     loadProxyList();

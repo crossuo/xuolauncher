@@ -88,7 +88,7 @@
                   <enum>Qt::LeftToRight</enum>
                  </property>
                  <property name="text">
-                  <string>Profile Name:</string>
+                  <string>Profile Na&amp;me:</string>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -120,7 +120,7 @@
                   <string>Your username</string>
                  </property>
                  <property name="text">
-                  <string>Login:</string>
+                  <string>&amp;Login:</string>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -981,7 +981,7 @@
            <item>
             <widget class="QLabel" name="label_7">
              <property name="text">
-              <string>Name:</string>
+              <string>Na&amp;me:</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -1096,7 +1096,7 @@
           <x>10</x>
           <y>5</y>
           <width>661</width>
-          <height>396</height>
+          <height>391</height>
          </rect>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_17">

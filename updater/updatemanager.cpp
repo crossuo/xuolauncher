@@ -148,6 +148,8 @@ void UpdateManager::getFile(
     request.setRawHeader("User-Agent", userAgent.toUtf8());
 
     auto reply = manager->get(request);
+
+    // FIXME: Move progress dialog outside and don't do once per file!
     if (!silent)
     {
         auto progressDialog = new ProgressDialog(filename, parent);
@@ -160,6 +162,7 @@ void UpdateManager::getFile(
         connect(reply, &QNetworkReply::finished, progressDialog, &ProgressDialog::hide);
         progressDialog->show();
     }
+
     connect(
         reply, &QNetworkReply::downloadProgress, this, [this](qint64 bytesRead, qint64 totalBytes) {
             emit downloadProgress(bytesRead, totalBytes);

@@ -38,13 +38,12 @@ private slots:
     void on_rb_XuoFeaturesRunUO_clicked();
     void on_rb_XuoFeaturesPOL_clicked();
 
-    void on_pb_CheckUpdates_clicked();
     void on_pb_Process_clicked();
     void on_tb_SetReleasePath_clicked();
+    void on_tw_Main_currentChanged(int index);
 
     void onUpdatesListReceived(const QList<CFileInfo> &list);
     void onPackageListReceived(const QMap<QString, QMap<QString, CReleaseInfo>> &packages);
-    void onUpdatesTimer();
 
 signals:
     void updatesListReceived(const QList<CFileInfo> &);
@@ -55,16 +54,12 @@ signals:
 
 private:
     Ui::ManagerWindow *ui = nullptr;
-    int m_FilesToUpdateCount = 0;
-    int m_DownloadingPackageTotal = 0;
-    bool m_Loading = true;
-    bool m_LauncherFoundInUpdates = false;
     UpdateManager *m_UpdateManager = nullptr;
-    QTimer m_UpdatesTimer;
 
     QString boolToText(const bool &value);
     bool rawStringToBool(QString value);
 
+    void refreshUpdates();
     void updateXUOAFeaturesCode();
     void updateXuoFeaturesCode();
 };

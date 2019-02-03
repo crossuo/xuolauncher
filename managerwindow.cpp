@@ -78,7 +78,6 @@ ManagerWindow::ManagerWindow(QWidget *parent)
     ui->setupUi(this);
 
     m_UpdateManager = new UpdateManager(UPDATER_HOST, MANAGER_TITLE, this);
-    m_UpdateManager->setCacheDirectory(qApp->applicationDirPath() + "/cache");
     connect(
         m_UpdateManager,
         &UpdateManager::packageListReceived,
@@ -92,29 +91,19 @@ ManagerWindow::ManagerWindow(QWidget *parent)
 
     connect(
         this,
-        SIGNAL(updatesListReceived(const QList<CUpdateInfo> &)),
-        this,
-        SLOT(onUpdatesListReceived(const QList<CUpdateInfo> &)));
-    connect(
-        this,
         SIGNAL(packageListReceived(const QMap<QString, QMap<QString, CReleaseInfo>> &)),
         this,
         SLOT(onPackageListReceived(const QMap<QString, QMap<QString, CReleaseInfo>> &)));
-    connect(&m_UpdatesTimer, SIGNAL(timeout()), this, SLOT(onUpdatesTimer()));
 
-#if defined(QT_NO_DEBUG)
-    ui->tw_Main->removeTab(3);
-#else
-
-#endif
+    auto p = QPixmap(":/qt/etc/XUO.png");
+    setWindowIcon(p);
 
     setFixedSize(size());
 
     updateXUOAFeaturesCode();
     updateXuoFeaturesCode();
     setWindowTitle(MANAGER_TITLE);
-    m_Loading = false;
-    m_UpdatesTimer.start(15 * 60 * 1000);
+    refreshUpdates();
 }
 
 ManagerWindow::~ManagerWindow()
@@ -122,7 +111,33 @@ ManagerWindow::~ManagerWindow()
     delete ui;
     delete m_UpdateManager;
     m_UpdateManager = nullptr;
-    m_UpdatesTimer.stop();
+}
+
+void ManagerWindow::closeEvent(QCloseEvent *event)
+{
+    event->accept();
+}
+
+void ManagerWindow::keyPressEvent(QKeyEvent *event)
+{
+    if (event->isAutoRepeat())
+        return;
+
+    if (event->key() == Qt::Key_Delete)
+    {
+        //QWidget *focused = QApplication::focusWidget();
+
+    }
+
+    event->accept();
+}
+
+void ManagerWindow::on_tw_Main_currentChanged(int index)
+{
+    if (index == 0) // Updates preview tab
+    {
+        refreshUpdates();
+    }
 }
 
 void ManagerWindow::on_tb_SetReleasePath_clicked()
@@ -148,30 +163,6 @@ void ManagerWindow::on_tb_SetReleasePath_clicked()
     }
 }
 
-void ManagerWindow::onUpdatesTimer()
-{
-    on_pb_CheckUpdates_clicked();
-}
-
-void ManagerWindow::closeEvent(QCloseEvent *event)
-{
-    event->accept();
-}
-
-void ManagerWindow::keyPressEvent(QKeyEvent *event)
-{
-    if (event->isAutoRepeat())
-        return;
-
-    if (event->key() == Qt::Key_Delete)
-    {
-        //QWidget *focused = QApplication::focusWidget();
-
-    }
-
-    event->accept();
-}
-
 bool ManagerWindow::rawStringToBool(QString value)
 {
     value = value.toLower();
@@ -187,18 +178,52 @@ bool ManagerWindow::rawStringToBool(QString value)
 
 void ManagerWindow::on_pb_Process_clicked()
 {
-    if (ui->pb_Process->isEnabled())
+    if (!ui->pb_Process->isEnabled())
+        return;
+
+    ui->pb_Process->setEnabled(false);
+    QMessageBox::information(this, "Publishing", tr("Please wait, this may take some time."));
+    const auto &path = ui->le_ReleasePath->text();
+    const auto &plat = ui->cb_ReleasePlatform->currentText();
+    const auto &prod = ui->cb_ReleaseProduct->currentText();
+    const auto &ver = ui->le_ReleaseVersion->text();
+    m_UpdateManager->generateUpdate(path, plat, prod, ver, this);
+    QMessageBox::information(this, "Publishing", tr("Done!"));
+    ui->pb_Process->setEnabled(true);
+}
+
+void ManagerWindow::onUpdatesListReceived(const QList<CFileInfo> &list)
+{
+    ui->lw_AvailableUpdates->clear();
+    for (const auto &info : list)
     {
-        ui->pb_Process->setEnabled(false);
-        QMessageBox::information(this, "Publishing", tr("Please wait, this may take some time."));
-        const auto &path = ui->le_ReleasePath->text();
-        const auto &plat = ui->cb_ReleasePlatform->currentText();
-        const auto &prod = ui->cb_ReleaseProduct->currentText();
-        const auto &ver = ui->le_ReleaseVersion->text();
-        m_UpdateManager->generateUpdate(path, plat, prod, ver, this);
-        QMessageBox::information(this, "Publishing", tr("Done!"));
-        ui->pb_Process->setEnabled(true);
+        ui->lw_AvailableUpdates->addItem(new CUpdateInfoListWidgetItem(info));
     }
+    ui->lw_Packages->setEnabled(true);
+}
+
+void ManagerWindow::onPackageListReceived(const QMap<QString, QMap<QString, CReleaseInfo>> &packages)
+{
+    ui->lw_Packages->clear();
+    for (const auto &p : packages.keys())
+    {
+        if (p == "all")
+            continue;
+
+        for (const auto &v : packages[p].keys())
+        {
+            ui->lw_Packages->addItem(new CPackageInfoListWidgetItem(packages[p][v]));
+        }
+    }
+    ui->lw_Packages->sortItems(Qt::SortOrder::DescendingOrder);
+}
+
+void ManagerWindow::refreshUpdates()
+{
+    ui->lw_Packages->setEnabled(false);
+    ui->lw_AvailableUpdates->clear();
+    ui->lw_Packages->clear();
+    m_UpdateManager->getManifest(QString("release/%1%2.manifest.xml").arg(GetPlatformName()).arg(""));
 }
 
 void ManagerWindow::on_lw_XUOAFeaturesOptions_clicked(const QModelIndex &index)
@@ -292,44 +317,6 @@ void ManagerWindow::updateXUOAFeaturesCode()
             uint(scriptGroupsFlags & 0xFFFFFFFF));
     }
     ui->pte_XUOAFeaturesCode->setPlainText(code);
-}
-
-void ManagerWindow::onUpdatesListReceived(const QList<CFileInfo> &list)
-{
-    ui->lw_AvailableUpdates->clear();
-    for (const auto &info : list)
-    {
-        ui->lw_AvailableUpdates->addItem(new CUpdateInfoListWidgetItem(info));
-    }
-
-    if (ui->lw_AvailableUpdates->count())
-        ui->tw_Main->setCurrentIndex(1);
-
-    ui->lw_Packages->setEnabled(true);
-}
-
-void ManagerWindow::onPackageListReceived(const QMap<QString, QMap<QString, CReleaseInfo>> &packages)
-{
-    ui->lw_Packages->clear();
-    for (const auto &p : packages.keys())
-    {
-        if (p == "all")
-            continue;
-
-        for (const auto &v : packages[p].keys())
-        {
-            ui->lw_Packages->addItem(new CPackageInfoListWidgetItem(packages[p][v]));
-        }
-    }
-    ui->lw_Packages->sortItems(Qt::SortOrder::DescendingOrder);
-}
-
-void ManagerWindow::on_pb_CheckUpdates_clicked()
-{
-    ui->lw_Packages->setEnabled(false);
-    ui->lw_AvailableUpdates->clear();
-    ui->lw_Packages->clear();
-    m_UpdateManager->getManifest(QString("release/%1%2.manifest.xml").arg(GetPlatformName()).arg(""));
 }
 
 void ManagerWindow::on_lw_XuoFeaturesOptions_clicked(const QModelIndex &index)

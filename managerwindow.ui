@@ -42,12 +42,15 @@
       <property name="enabled">
        <bool>true</bool>
       </property>
+      <property name="whatsThis">
+       <string/>
+      </property>
       <property name="currentIndex">
        <number>0</number>
       </property>
       <widget class="QWidget" name="tb_Update">
        <attribute name="title">
-        <string>Update</string>
+        <string>CrossUO Updates</string>
        </attribute>
        <widget class="QListWidget" name="lw_AvailableUpdates">
         <property name="geometry">
@@ -112,6 +115,299 @@
         </property>
         <property name="orientation">
          <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tb_XUOReleaseManager">
+       <attribute name="title">
+        <string>CrossUO Releases</string>
+       </attribute>
+       <widget class="QLineEdit" name="le_ReleasePath">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>80</x>
+          <y>6</y>
+          <width>566</width>
+          <height>20</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_20">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>8</y>
+          <width>71</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Manifest:</string>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="tb_SetReleasePath">
+        <property name="geometry">
+         <rect>
+          <x>650</x>
+          <y>5</y>
+          <width>22</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>...</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pb_Process">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>5</x>
+          <y>339</y>
+          <width>666</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Process</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="cb_ReleaseProduct">
+        <property name="geometry">
+         <rect>
+          <x>80</x>
+          <y>30</y>
+          <width>186</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>CrossUO</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>X:UO Launcher</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>X:UO Assist</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QLabel" name="label_24">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>30</y>
+          <width>71</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Product:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_25">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>82</y>
+          <width>71</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Version:</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="le_ReleaseVersion">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>80</x>
+          <y>80</y>
+          <width>186</width>
+          <height>20</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_26">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>55</y>
+          <width>71</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Platform:</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="cb_ReleasePlatform">
+        <property name="geometry">
+         <rect>
+          <x>80</x>
+          <y>55</y>
+          <width>186</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>win64</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>win64-beta</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>ubuntu</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>ubuntu-beta</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>manjarolinux</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>manjarolinux-beta</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>osx</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>osx-beta</string>
+         </property>
+        </item>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tb_ReleaseManager">
+       <attribute name="title">
+        <string>Shard Release</string>
+       </attribute>
+       <widget class="QLabel" name="lbl0">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>5</y>
+          <width>59</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Manifest:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>30</y>
+          <width>86</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Shard Name:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_3">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>55</y>
+          <width>59</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Version:</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pb_ShardProcess">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>355</y>
+          <width>671</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Process</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="le_ShardReleasePath">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>5</y>
+          <width>546</width>
+          <height>21</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="le_ShardName">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>30</y>
+          <width>136</width>
+          <height>21</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="le_ShardVersion">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>55</y>
+          <width>136</width>
+          <height>21</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="tb_SetShardReleasePath">
+        <property name="geometry">
+         <rect>
+          <x>650</x>
+          <y>5</y>
+          <width>22</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>...</string>
         </property>
        </widget>
       </widget>
@@ -878,299 +1174,6 @@
         <property name="readOnly">
          <bool>true</bool>
         </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="tb_ReleaseManager">
-       <attribute name="title">
-        <string>Release</string>
-       </attribute>
-       <widget class="QLabel" name="lbl0">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>5</y>
-          <width>59</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Manifest:</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_2">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>30</y>
-          <width>86</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Shard Name:</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_3">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>55</y>
-          <width>59</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Version:</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pb_ShardProcess">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>355</y>
-          <width>671</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Process</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="le_ShardReleasePath">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="geometry">
-         <rect>
-          <x>100</x>
-          <y>5</y>
-          <width>546</width>
-          <height>21</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="le_ShardName">
-        <property name="geometry">
-         <rect>
-          <x>100</x>
-          <y>30</y>
-          <width>136</width>
-          <height>21</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="le_ShardVersion">
-        <property name="geometry">
-         <rect>
-          <x>100</x>
-          <y>55</y>
-          <width>136</width>
-          <height>21</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QToolButton" name="tb_SetShardReleasePath">
-        <property name="geometry">
-         <rect>
-          <x>650</x>
-          <y>5</y>
-          <width>22</width>
-          <height>22</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>...</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="tb_XUOReleaseManager">
-       <attribute name="title">
-        <string>CrossUO Releases</string>
-       </attribute>
-       <widget class="QLineEdit" name="le_ReleasePath">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="geometry">
-         <rect>
-          <x>80</x>
-          <y>6</y>
-          <width>566</width>
-          <height>20</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_20">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>8</y>
-          <width>71</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Manifest:</string>
-        </property>
-       </widget>
-       <widget class="QToolButton" name="tb_SetReleasePath">
-        <property name="geometry">
-         <rect>
-          <x>650</x>
-          <y>5</y>
-          <width>22</width>
-          <height>22</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>...</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pb_Process">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="geometry">
-         <rect>
-          <x>5</x>
-          <y>339</y>
-          <width>666</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Process</string>
-        </property>
-       </widget>
-       <widget class="QComboBox" name="cb_ReleaseProduct">
-        <property name="geometry">
-         <rect>
-          <x>80</x>
-          <y>30</y>
-          <width>186</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <item>
-         <property name="text">
-          <string>CrossUO</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>X:UO Launcher</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>X:UO Assist</string>
-         </property>
-        </item>
-       </widget>
-       <widget class="QLabel" name="label_24">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>30</y>
-          <width>71</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Product:</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_25">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>82</y>
-          <width>71</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Version:</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="le_ReleaseVersion">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="geometry">
-         <rect>
-          <x>80</x>
-          <y>80</y>
-          <width>186</width>
-          <height>20</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_26">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>55</y>
-          <width>71</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Platform:</string>
-        </property>
-       </widget>
-       <widget class="QComboBox" name="cb_ReleasePlatform">
-        <property name="geometry">
-         <rect>
-          <x>80</x>
-          <y>55</y>
-          <width>186</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <item>
-         <property name="text">
-          <string>win64</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>win64-beta</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>ubuntu</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>ubuntu-beta</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>manjarolinux</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>manjarolinux-beta</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>osx</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>osx-beta</string>
-         </property>
-        </item>
        </widget>
       </widget>
      </widget>
