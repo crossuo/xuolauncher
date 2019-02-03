@@ -1078,9 +1078,18 @@ void LauncherWindow::on_pb_Launch_clicked()
     }
 
 #if BUILD_WINDOWS
-    const auto cwd = "\"" + ui->cb_XuoPath->currentText() + "\\crossuo" EXE_EXTENSION + "\"";
+    const auto cwd = "\"" + clientPath + "\\crossuo" EXE_EXTENSION + "\"";
 #else
-    const auto cwd = QString("./crossuo");
+    auto assist = QFileInfo(QDir(clientPath).filePath("xuoassist"));
+    QString cwd;
+    if (assist.exists())
+    {
+        cwd = "./xuoassist";
+    }
+    else
+    {
+        cwd = "./crossuo";
+    }
 #endif
 
     const auto program = cwd;

@@ -43,7 +43,7 @@
        <bool>true</bool>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tb_Server">
        <attribute name="title">
@@ -93,6 +93,9 @@
                  <property name="alignment">
                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                  </property>
+                 <property name="buddy">
+                  <cstring>le_ProfileName</cstring>
+                 </property>
                 </widget>
                </item>
                <item>
@@ -105,6 +108,9 @@
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                 <property name="buddy">
+                  <cstring>le_ServerAddress</cstring>
                  </property>
                 </widget>
                </item>
@@ -119,6 +125,9 @@
                  <property name="alignment">
                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                  </property>
+                 <property name="buddy">
+                  <cstring>le_ServerAccount</cstring>
+                 </property>
                 </widget>
                </item>
                <item>
@@ -132,6 +141,9 @@
                  <property name="alignment">
                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                  </property>
+                 <property name="buddy">
+                  <cstring>le_ServerPassword</cstring>
+                 </property>
                 </widget>
                </item>
                <item>
@@ -140,10 +152,13 @@
                   <string>Path where your Ultima Online data files are located</string>
                  </property>
                  <property name="text">
-                  <string>UO Data Path:</string>
+                  <string>UO Data Pat&amp;h:</string>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                 <property name="buddy">
+                  <cstring>le_ServerClientPath</cstring>
                  </property>
                 </widget>
                </item>
@@ -313,10 +328,13 @@
                   <string>Character Name to use with fast login</string>
                  </property>
                  <property name="text">
-                  <string>Use Character:</string>
+                  <string>Use C&amp;haracter:</string>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                 <property name="buddy">
+                  <cstring>le_ServerCharacter</cstring>
                  </property>
                 </widget>
                </item>
@@ -331,6 +349,9 @@
                  <property name="alignment">
                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                  </property>
+                 <property name="buddy">
+                  <cstring>le_ServerClientVersion</cstring>
+                 </property>
                 </widget>
                </item>
                <item>
@@ -344,6 +365,9 @@
                  <property name="alignment">
                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                  </property>
+                 <property name="buddy">
+                  <cstring>cb_ServerClientType</cstring>
+                 </property>
                 </widget>
                </item>
                <item>
@@ -356,6 +380,9 @@
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                 <property name="buddy">
+                  <cstring>cb_XuoPath</cstring>
                  </property>
                 </widget>
                </item>
@@ -409,6 +436,9 @@
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                   </property>
+                   <property name="buddy">
+                    <cstring>le_ServerClientVersion_2</cstring>
                    </property>
                   </widget>
                  </item>
@@ -547,6 +577,9 @@
                <property name="text">
                 <string>Command line:</string>
                </property>
+               <property name="buddy">
+                <cstring>le_CommandLine</cstring>
+               </property>
               </widget>
              </item>
              <item>
@@ -625,7 +658,7 @@
          <item>
           <widget class="QCheckBox" name="cb_Beta">
            <property name="toolTip">
-            <string>Use Beta Channel for testing preview releases and helping us</string>
+            <string>Use Beta Channel for testing preview releases and help us</string>
            </property>
            <property name="text">
             <string>Beta Channel</string>
@@ -651,6 +684,9 @@
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
+           </property>
+           <property name="buddy">
+            <cstring>lw_ProfileList</cstring>
            </property>
           </widget>
          </item>
@@ -685,7 +721,7 @@
         <property name="geometry">
          <rect>
           <x>310</x>
-          <y>30</y>
+          <y>25</y>
           <width>20</width>
           <height>331</height>
          </rect>
@@ -752,6 +788,9 @@
            <property name="alignment">
             <set>Qt::AlignCenter</set>
            </property>
+           <property name="buddy">
+            <cstring>lw_AvailableUpdates</cstring>
+           </property>
           </widget>
          </item>
          <item>
@@ -779,10 +818,13 @@
          <item>
           <widget class="QLabel" name="label_17">
            <property name="text">
-            <string>Packages / Versions</string>
+            <string>Pac&amp;kages / Versions</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
+           </property>
+           <property name="buddy">
+            <cstring>lw_Packages</cstring>
            </property>
           </widget>
          </item>
@@ -826,6 +868,9 @@
          <property name="text">
           <string>Account:</string>
          </property>
+         <property name="buddy">
+          <cstring>le_ProxyAccount</cstring>
+         </property>
         </widget>
         <widget class="QLabel" name="label_11">
          <property name="geometry">
@@ -838,6 +883,9 @@
          </property>
          <property name="text">
           <string>Password:</string>
+         </property>
+         <property name="buddy">
+          <cstring>le_ProxyPassword</cstring>
          </property>
         </widget>
         <widget class="QLineEdit" name="le_ProxyAccount">
@@ -901,6 +949,9 @@
            <property name="alignment">
             <set>Qt::AlignCenter</set>
            </property>
+           <property name="buddy">
+            <cstring>lw_ProxyList</cstring>
+           </property>
           </widget>
          </item>
          <item>
@@ -935,6 +986,9 @@
              <property name="alignment">
               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
+             <property name="buddy">
+              <cstring>le_ProxyName</cstring>
+             </property>
             </widget>
            </item>
            <item>
@@ -944,6 +998,9 @@
              </property>
              <property name="alignment">
               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+             <property name="buddy">
+              <cstring>le_ProxyAddress</cstring>
              </property>
             </widget>
            </item>
@@ -963,6 +1020,9 @@
               <widget class="QLabel" name="label_9">
                <property name="text">
                 <string>Port:</string>
+               </property>
+               <property name="buddy">
+                <cstring>le_ProxyPort</cstring>
                </property>
               </widget>
              </item>
@@ -1036,7 +1096,7 @@
           <x>10</x>
           <y>5</y>
           <width>661</width>
-          <height>391</height>
+          <height>396</height>
          </rect>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_17">
@@ -1076,7 +1136,7 @@
            <item>
             <widget class="QPushButton" name="pb_TeamMember">
              <property name="text">
-              <string>Team Member</string>
+              <string>Team Members</string>
              </property>
             </widget>
            </item>
