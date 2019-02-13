@@ -67,6 +67,11 @@ QString GetPlatformName()
         }
     }
 
+    if (distroName == "mintlinux")
+    {
+        distroName = "ubuntu";
+    }
+
     if (distroName != "manjarolinux" && distroName != "ubuntu")
     {
         QMessageBox::warning(nullptr, "Warning", QString("The %1 distribution is unsupported, you may find issues trying to use this binary").arg(distro));
